@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.section-title {
+  @apply relative text-2xl font-bold text-gray-500 before:absolute before:-left-20 before:top-1/2 before:h-[2px] before:w-14 before:-translate-y-1/2 before:bg-gray-500 after:absolute after:-right-20 after:top-1/2 after:h-[2px] after:w-14 after:-translate-y-1/2 after:bg-gray-500 before:sm:-left-28 before:sm:w-20 after:sm:-right-28 after:sm:w-20;
+}
+
+.rich-editor {
+  @apply prose-headings:pl-4 prose-h1:text-3xl prose-h2:mb-6 prose-h2:mt-12 prose-h2:scroll-mt-12 prose-h2:rounded prose-h2:border-l-4 prose-h2:border-primary-color prose-h2:bg-blue-100 prose-h2:py-3 prose-h2:text-2xl prose-h2:font-bold prose-h3:relative prose-h3:mb-4 prose-h3:mt-8 prose-h3:scroll-mt-12 prose-h3:py-1 prose-h3:text-xl prose-h3:font-semibold prose-h3:before:absolute  prose-h3:before:left-0 prose-h3:before:top-0  prose-h3:before:h-full prose-h3:before:w-1 prose-h3:before:rounded prose-h3:before:bg-primary-color prose-h4:my-1 prose-h4:border-b-4 prose-h4:border-blue-100 prose-h4:py-1 prose-h4:text-lg prose-h4:font-medium prose-p:leading-7 prose-p:tracking-wider prose-a:text-primary-color prose-a:underline hover:prose-a:opacity-70 prose-img:my-6 prose-img:aspect-video prose-img:h-auto prose-img:w-full prose-img:object-cover;
+}
+
+@layer components {
+  .rich-editor > ul > li {
+    @apply text-gray-900;
+  }
+  .rich-editor > ol > li {
+    @apply text-blue-500;
+  }
+}
+
+.marker {
+  @apply font-bold underline decoration-emphasis decoration-8 underline-offset-[-4px];
+}
+
+/* .balloon-left {
+  @apply relative inline-block rounded-md border-2 border-primary-color bg-blue-50 p-4 before:absolute before:-left-6 before:top-2 before:z-10 before:border-[12px] before:border-transparent before:border-r-primary-color after:absolute after:-left-[21px] after:top-2 after:z-20 after:border-[12px] after:border-transparent after:border-r-blue-50;
+}
+
+.balloon-right {
+  @apply relative inline-block rounded-md border-2 border-primary-color bg-blue-50 p-4 before:absolute before:-right-6 before:top-2 before:z-10 before:border-[12px] before:border-transparent before:border-l-primary-color after:absolute after:-right-[21px] after:top-2 after:z-20 after:border-[12px] after:border-transparent after:border-l-blue-50;
+} */
+
+.balloon-left {
+  @apply relative inline-block rounded-md bg-gray-100 p-4 before:absolute before:-left-6 before:top-3 before:z-10 before:border-[12px] before:border-transparent before:border-r-gray-100 after:absolute after:-left-[21px] after:top-3 after:z-20 after:border-[12px] after:border-transparent after:border-r-gray-100;
+}
+
+.balloon-right {
+  @apply relative inline-block rounded-md bg-gray-100 p-4 before:absolute before:-right-6 before:top-3 before:z-10 before:border-[12px] before:border-transparent before:border-l-gray-100 after:absolute after:-right-[21px] after:top-3 after:z-20 after:border-[12px] after:border-transparent after:border-l-gray-100;
+}
