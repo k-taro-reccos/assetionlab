@@ -18,13 +18,13 @@ export const Search: FC<Props> = ({ header }) => {
 
   const handleSubmit: ComponentProps<"form">["onSubmit"] = async (e) => {
     e.preventDefault()
+    router.push(`/search?q=${encodeURI(searchText || searchHeaderText)}`)
     if (header) {
       close()
       setSearchHeaderText("")
     } else {
       setSearchText("")
     }
-    router.push(`/search?q=${encodeURI(searchText || searchHeaderText)}`)
   }
 
   return (

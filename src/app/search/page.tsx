@@ -4,7 +4,6 @@ import { HiChevronRight, HiHome } from "react-icons/hi"
 import { Aside } from "../components/Aside"
 import { SearchResults } from "../components/SearchResults"
 import { Suspense } from "react"
-// import { WindowProvider } from "../components/WindowProvider"
 import { Loading } from "../components/Loading"
 
 type Props = {
@@ -12,6 +11,8 @@ type Props = {
     q: string
   }
 }
+
+// export const runtime = 'edge'
 
 export const generateMetadata = async ({
   searchParams,
@@ -48,7 +49,6 @@ const SearchPage = async ({ searchParams }: Props) => {
           </h1>
           <hr className="mt-1 h-[2px] bg-gray-400" />
           <div className="mt-6">
-            {/* <Loading */}
             <Suspense fallback={<Loading />}>
               {/* @ts-expect-error Server Component */}
               <SearchResults searchParams={searchParams.q} />
