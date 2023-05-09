@@ -1,58 +1,32 @@
-import { client } from "libs/client"
-import { Category, Post } from "../../types"
+// import { client } from "libs/client"
+import { Post } from "../../types"
 import { Article } from "./components/Article"
 import { Aside } from "./components/Aside"
 import { CategoryList } from "./components/CategoryList"
 
-// type Data = {
-//   contents: Post[]
-// }
-
-const getPosts = async () => {
-  const data = await client.getList<Post>({
-    endpoint: "blogs"
-  })
-  // const res = await fetch("https://finance-blog.microcms.io/api/v1/blogs", {
-  //   headers: {
-  //     "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
-  //   },
-  // })
-  // if (!res.ok) {
-  //   throw new Error("Failed to fetch data")
-  // }
-  // const data: Data = await res.json()
-
-  return data.contents
+type Data = {
+  contents: Post[]
 }
 
-// type CategoryData = {
-//   contents: Category[]
-// }
-
-const getCategories = async () => {
-  const data = await client.getList<Category>({
-    endpoint: "categories"
+const getPosts = async () => {
+  // const data = await client.getList<Post>({
+  //   endpoint: "blogs"
+  // })
+  const res = await fetch("https://finance-blog.microcms.io/api/v1/blogs", {
+    headers: {
+      "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
+    },
   })
-  // const res = await fetch(
-  //   "https://finance-blog.microcms.io/api/v1/categories",
-  //   {
-  //     headers: {
-  //       "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
-  //     },
-  //   }
-  // )
-  // if (!res.ok) {
-  //   throw new Error("Failed to fetch data")
-  // }
-
-  // const data: CategoryData = await res.json()
+  if (!res.ok) {
+    throw new Error("Failed to fetch data")
+  }
+  const data: Data = await res.json()
 
   return data.contents
 }
 
 const Home = async () => {
   const posts = await getPosts()
-  const categories = await getCategories()
 
   // if (!posts || posts.length === 0) {
   //   notFound()
@@ -60,16 +34,11 @@ const Home = async () => {
 
   return (
     <>
-      <div className="mt-6">
-        <nav>
-          <ul className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-            {categories.map((category) => (
-              <CategoryList key={category.id} category={category} />
-            ))}
-          </ul>
-        </nav>
+      <div className="mt-8">
+        {/* @ts-expect-error Server Component */}
+        <CategoryList />
       </div>
-      <div className="mt-8 md:flex">
+      <div className="mt-12 md:flex">
         <div className="md:flex-1">
           <div className="text-center">
             <span className="section-title">新着記事</span>

@@ -30,7 +30,7 @@ type Props = {
   searchParams: string
 }
 
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+// const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export const SearchResults = async ({ searchParams }: Props) => {
   // const [loading, setLoading] = useState(false)
@@ -38,7 +38,7 @@ export const SearchResults = async ({ searchParams }: Props) => {
   // const searchParams = useSearchParams()
   // const q = searchParams?.get("q")
   const searchResults = await search(searchParams)
-  await sleep(2000)
+  // await sleep(2000)
 
   // useEffect(() => {
   // window.scrollTo(0, 0)

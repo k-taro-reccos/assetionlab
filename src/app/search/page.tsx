@@ -4,7 +4,7 @@ import { HiChevronRight, HiHome } from "react-icons/hi"
 import { Aside } from "../components/Aside"
 import { SearchResults } from "../components/SearchResults"
 import { Suspense } from "react"
-import { WindowProvider } from "../components/WindowProvider"
+// import { WindowProvider } from "../components/WindowProvider"
 import { Loading } from "../components/Loading"
 
 type Props = {
@@ -23,7 +23,7 @@ export const generateMetadata = async ({
 
 const SearchPage = async ({ searchParams }: Props) => {
   return (
-    <WindowProvider>
+    <>
       <ul className="flex items-center space-x-1 py-3 text-sm tracking-wider text-gray-500">
         <li>
           <Link
@@ -60,7 +60,7 @@ const SearchPage = async ({ searchParams }: Props) => {
           <Aside />
         </aside>
       </div>
-    </WindowProvider>
+    </>
   )
 }
 

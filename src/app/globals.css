@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .section-title {
-  @apply relative text-2xl font-bold text-gray-500 before:absolute before:-left-20 before:top-1/2 before:h-[2px] before:w-14 before:-translate-y-1/2 before:bg-gray-500 after:absolute after:-right-20 after:top-1/2 after:h-[2px] after:w-14 after:-translate-y-1/2 after:bg-gray-500 before:sm:-left-28 before:sm:w-20 after:sm:-right-28 after:sm:w-20;
+  @apply relative text-2xl font-bold tracking-wider text-gray-500 before:absolute before:-left-20 before:top-1/2 before:h-[2px] before:w-14 before:-translate-y-1/2 before:bg-gray-500 after:absolute after:-right-20 after:top-1/2 after:h-[2px] after:w-14 after:-translate-y-1/2 after:bg-gray-500 before:sm:-left-28 before:sm:w-20 after:sm:-right-28 after:sm:w-20;
 }
 
 .rich-editor {

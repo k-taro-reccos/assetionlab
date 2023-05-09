@@ -1,14 +1,31 @@
-import { client } from "libs/client"
+// import { client } from "libs/client"
 import { Post } from "types"
 import { Article } from "./Article"
 
+type PostData = {
+  contents: Post[]
+}
+
 const getRelatedArticle = async (categoryId: string) => {
-  const data = await client.getList<Post>({
-    endpoint: "blogs",
-    queries: {
-      filters: `category[equals]${categoryId}`,
-    },
-  })
+  // const data = await client.getList<Post>({
+  //   endpoint: "blogs",
+  //   queries: {
+  //     filters: `category[equals]${categoryId}`,
+  //   },
+  // })
+  const res = await fetch(
+    `https://finance-blog.microcms.io/api/v1/blogs?filters=category[equals]${categoryId}`,
+    {
+      headers: {
+        "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
+      },
+    }
+  )
+  if (!res.ok) {
+    throw new Error("Failed to fetch articles")
+  }
+  const data: PostData = await res.json()
+
   return data.contents
 }
 
