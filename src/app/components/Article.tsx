@@ -17,7 +17,7 @@ export const Article: FC<Props> = ({ post, related }) => {
         href={`/${post.id}`}
         as={`/${post.id}`}
         className="flex h-full flex-col overflow-hidden rounded-lg border shadow-md transition hover:-translate-y-1 hover:shadow-lg"
-        prefetch={false}
+        // prefetch={false}
       >
         {post.eyecatch?.url ? (
           <div className="relative aspect-[2/1]">
