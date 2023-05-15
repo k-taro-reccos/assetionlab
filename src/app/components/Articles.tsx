@@ -1,47 +1,36 @@
-import { Post } from "types"
-import Link from "next/link"
-import Image from "next/image"
-import { MdQueryBuilder } from "react-icons/md"
 import dayjs from "dayjs"
+import Image from "next/image"
+import Link from "next/link"
+import { MdQueryBuilder } from "react-icons/md"
+import { Post } from "types"
 
 type Data = {
   contents: Post[]
-  totalCount: number
-  offset: number
-  limit: number
 }
 
-const search = async (params: string) => {
-  const res = await fetch(
-    `https://finance-blog.microcms.io/api/v1/blogs?q=${params}&orders=-publishedAt`,
-    {
-      headers: {
-        "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
-      },
-    }
-  )
-  const data: Data = await res.json()
-  return data
-}
-
-type Props = {
-  searchParams: string
-}
-
-export const SearchResults = async ({ searchParams }: Props) => {
-  const searchResults = await search(searchParams)
-
-  if (searchResults?.totalCount === 0) {
-    return (
-      <p className="text-center text-xl font-bold tracking-wider">
-        記事が見つかりませんでした。
-      </p>
-    )
+const getPosts = async () => {
+  // const data = await client.getList<Post>({
+  //   endpoint: "blogs"
+  // })
+  const res = await fetch("https://finance-blog.microcms.io/api/v1/blogs", {
+    headers: {
+      "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
+    },
+  })
+  if (!res.ok) {
+    throw new Error("Failed to fetch data")
   }
+  const data: Data = await res.json()
+
+  return data.contents
+}
+
+export const Articles = async () => {
+  const posts = await getPosts()
 
   return (
     <div className="grid grid-cols-1 gap-4 xs:grid-cols-2">
-      {searchResults.contents.map((post) => (
+      {posts.map((post) => (
         <article className="relative" key={post.id}>
           <Link
             href={`/${post.id}`}
@@ -51,14 +40,14 @@ export const SearchResults = async ({ searchParams }: Props) => {
           >
             {post.eyecatch?.url ? (
               <div className="relative aspect-[2/1]">
-                <span className="absolute left-2 top-2 z-10 rounded-full bg-primary-color px-2 py-[2px] text-sm text-white">
-                  {post.category.name}
-                </span>
+                  <span className="absolute left-2 top-2 z-10 rounded-full bg-primary-color px-2 py-[2px] text-sm text-white">
+                    {post.category.name}
+                  </span>
                 <Image
                   src={post.eyecatch?.url}
                   fill
                   alt={post.title}
-                  priority
+                  // priority
                   className="h-auto w-full object-cover"
                   sizes="(max-width: 575px) 100vw,
               (max-width: 991px) 50vw,
@@ -78,7 +67,9 @@ export const SearchResults = async ({ searchParams }: Props) => {
               />
             )}
             <div className="flex-1 bg-white p-2 pb-10">
-              <h2 className="line-clamp-3 leading-6 tracking-widest">
+              <h2
+                className="line-clamp-3 leading-6 tracking-widest"
+              >
                 {post.title}
               </h2>
               <div className="absolute bottom-2 right-2 flex items-center">

@@ -202,7 +202,7 @@ const PostPage = async ({ params }: Props) => {
                   src={post.eyecatch.url}
                   alt={post.title}
                   fill
-                  priority
+                  // priority
                   className="h-auto w-full object-cover"
                   sizes="(max-width: 991px) 100vw, 75vw"
                 />
@@ -256,18 +256,8 @@ const PostPage = async ({ params }: Props) => {
                 )}
               </div>
             </div>
-            <div className="mt-12 rounded bg-white px-4 py-6 sm:px-6 sm:py-8">
-              <div className="text-center">
-                <span className="section-title">関連記事</span>
-              </div>
-              <div className="mt-6 sm:mt-8">
-                {/* @ts-expect-error Server Component */}
-                <RelatedArticle
-                  categoryId={post.category.id}
-                  postId={post.id}
-                />
-              </div>
-            </div>
+             {/* @ts-expect-error Server Component */}
+            <RelatedArticle categoryId={post.category.id} postId={post.id} />
           </div>
           <div className="mt-12 md:ml-8 md:mt-0 md:w-[25%]">
             {/* @ts-expect-error Server Component */}

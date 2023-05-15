@@ -6,13 +6,13 @@ import { SearchResults } from "../components/SearchResults"
 import { Suspense } from "react"
 import { Loading } from "../components/Loading"
 
+export const runtime = "edge"
+
 type Props = {
   searchParams: {
     q: string
   }
 }
-
-// export const runtime = 'edge'
 
 export const generateMetadata = async ({
   searchParams,
@@ -22,7 +22,7 @@ export const generateMetadata = async ({
   }
 }
 
-const SearchPage = async ({ searchParams }: Props) => {
+const SearchPage = ({ searchParams }: Props) => {
   return (
     <>
       <ul className="flex items-center space-x-1 py-3 text-sm tracking-wider text-gray-500">
