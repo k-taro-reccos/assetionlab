@@ -1,5 +1,5 @@
 import "./globals.css"
-import { Noto_Sans_JP } from "next/font/google"
+// import { Noto_Sans_JP } from "next/font/google"
 import { ReactNode } from "react"
 import { Metadata } from "next"
 import { Header } from "./components/Header"
