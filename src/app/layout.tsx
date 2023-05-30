@@ -6,10 +6,10 @@ import { Header } from "./components/Header"
 import { Footer } from "./components/Footer"
 import { Wrapper } from "./components/Wrapper"
 
-const font = Noto_Sans_JP({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-})
+// const font = Noto_Sans_JP({
+//   subsets: ["latin"],
+//   weight: ["400", "700"],
+// })
 
 export const metadata: Metadata = {
   title: "金融ブログ!!!!",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="ja" className={font.className}>
+    <html lang="ja" >
       <body>
         <Wrapper>
           <Header />
