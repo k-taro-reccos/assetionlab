@@ -18,6 +18,7 @@ const search = async (params: string) => {
       headers: {
         "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
       },
+      next: { tags: ["posts"] },
     }
   )
   const data: Data = await res.json()

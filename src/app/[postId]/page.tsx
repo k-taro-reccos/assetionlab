@@ -41,7 +41,7 @@ const getDetailPost = async (contentId: string) => {
     headers: {
       "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
     },
-    // next: { tags: ["posts"] },
+    next: { tags: ["posts"] },
   })
 
   if (!res.ok) {
@@ -98,6 +98,7 @@ export const generateStaticParams = async () => {
     headers: {
       "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
     },
+    next: { tags: ["posts"] },
   })
 
   if (!res.ok) {
@@ -131,6 +132,7 @@ export const generateMetadata = async ({
       headers: {
         "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
       },
+      next: { tags: ["posts"] },
     }
   )
 
