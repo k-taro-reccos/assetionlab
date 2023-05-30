@@ -1,6 +1,6 @@
 import { Aside } from "@/app/components/Aside"
 import { Search } from "@/app/components/Search"
-import Link from "next/link"
+// import Link from "next/link"
 import React from "react"
 import { HiChevronRight, HiHome } from "react-icons/hi"
 import { Category } from "types"
@@ -21,8 +21,8 @@ const getCategories = async () => {
   if (!res.ok) {
     throw new Error("Failed to fetch data")
   }
-  const { contents: categories }: Data = await res.json()
-  return categories
+  const data: Data = await res.json()
+  return data.contents
 }
 
 const NotFound = async () => {
@@ -30,17 +30,17 @@ const NotFound = async () => {
   
   return (
     <>
-      <ul className="flex items-center space-x-1 py-3 text-sm text-gray-500">
+      <ul className="flex items-center space-x-1 py-4 text-sm text-gray-500">
         <li>
-          <Link
+          <a
             href="/"
-            as="/"
+            // as="/"
             className="flex items-center space-x-1 hover:underline"
-            prefetch={false}
+            // prefetch={false}
           >
             <HiHome className="h-4 w-4" />
             <span>ホーム</span>
-          </Link>
+          </a>
         </li>
         <li className="flex items-center space-x-1">
           <HiChevronRight className="h-5 w-5" />
@@ -52,7 +52,7 @@ const NotFound = async () => {
           <div>
             <div className="rounded bg-white p-4">
               <h1 className="mt-12 text-center text-3xl font-bold tracking-wider">
-                ページが見つかりませんでした。
+                記事が見つかりませんでした。
               </h1>
               <p className="mt-12 text-center">
                 以下の方法からもう一度目的のページをお探しください。
@@ -74,14 +74,14 @@ const NotFound = async () => {
                   <ul className="mt-6 list-inside list-disc space-y-4 pl-4">
                     {categories.map((category) => (
                       <li key={category.id}>
-                        <Link
+                        <a
                           href={`/category/${category.id}`}
-                          as={`/category/${category.id}`}
+                          // as={`/category/${category.id}`}
                           className="text-gray-500 hover:underline"
-                          prefetch={false}
+                          // prefetch={false}
                         >
                           {category.name}
-                        </Link>
+                        </a>
                       </li>
                     ))}
                   </ul>

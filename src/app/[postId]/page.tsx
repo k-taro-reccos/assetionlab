@@ -11,9 +11,17 @@ import { notFound } from "next/navigation"
 import { Metadata } from "next"
 import { RelatedArticle } from "../components/RelatedArticle"
 import { useTextLimit } from "@/hooks/useTextLimit"
-import { Aside } from "../components/Aside"
+import { draftMode } from "next/headers"
+import { HighlightToc } from "../components/HighlightToc"
+
+export const dynamicParams = false
 
 const getDetailPost = async (contentId: string) => {
+  const { isEnabled } = draftMode()
+  const url = isEnabled
+    ? `http://localhost:3000/api/preview?postId=${contentId}&draftKey=${contentId}`
+    : `https://finance-blog.microcms.io/api/v1/blogs/${contentId}`
+
   // const isDraft = (arg: any): arg is Draft => {
   //   if (!arg?.draftKey) {
   //     return false
@@ -29,14 +37,12 @@ const getDetailPost = async (contentId: string) => {
   //   contentId,
   //   // queries: draftKey,
   // })
-  const res = await fetch(
-    `https://finance-blog.microcms.io/api/v1/blogs/${contentId}`,
-    {
-      headers: {
-        "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
-      },
-    }
-  )
+  const res = await fetch(url, {
+    headers: {
+      "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
+    },
+    // next: { tags: ["posts"] },
+  })
 
   if (!res.ok) {
     throw new Error("Failed to fetch articles")
@@ -148,8 +154,8 @@ const PostPage = async ({ params }: Props) => {
   return (
     <>
       <div>
-        {/* {draftKey && <div className="text-2xl">プレビューモード</div>} */}
-        <ul className="flex items-center space-x-1 py-3 text-sm tracking-wider text-gray-500">
+        {/* {draft.isEnabled && <div className="text-2xl">プレビューモード</div>} */}
+        <ul className="flex items-center space-x-1 py-4 text-sm tracking-wider text-gray-500">
           <li>
             <Link
               href="/"
@@ -177,8 +183,8 @@ const PostPage = async ({ params }: Props) => {
             <span>{limitTitle}</span>
           </li>
         </ul>
-        <div className="flex flex-col md:flex-row">
-          <div className="md:flex-1">
+        <div className="grid gap-y-12 md:grid-cols-4">
+          <div className="md:col-span-3">
             <div className="rounded bg-white p-4 sm:p-6">
               <h1 className="text-3xl font-bold tracking-wider">
                 {post.title}
@@ -202,25 +208,19 @@ const PostPage = async ({ params }: Props) => {
                   src={post.eyecatch.url}
                   alt={post.title}
                   fill
-                  // priority
                   className="h-auto w-full object-cover"
                   sizes="(max-width: 991px) 100vw, 75vw"
                 />
               </div>
               <div className="mt-8">
-                <div className="rounded border-2 border-primary-color bg-gray-100">
-                  <div className="flex items-center justify-center bg-primary-color py-2">
-                    <span className="text-lg font-semibold tracking-widest text-white">
-                      目次
-                    </span>
-                  </div>
-                  <TableOfContents toc={toc} />
-                </div>
+                <TableOfContents toc={toc} />
                 {post.body?.map((sec, index) =>
                   sec.fieldId === "section" ? (
-                    <div key={index} className="rich-editor mt-4">
-                      {parse(sec.content)}
-                    </div>
+                    <section key={index}>
+                      <div className="rich-editor mt-4">
+                        {parse(sec.content)}
+                      </div>
+                    </section>
                   ) : sec.fieldId === "balloon" ? (
                     <div
                       key={index}
@@ -256,12 +256,13 @@ const PostPage = async ({ params }: Props) => {
                 )}
               </div>
             </div>
-             {/* @ts-expect-error Server Component */}
-            <RelatedArticle categoryId={post.category.id} postId={post.id} />
           </div>
-          <div className="mt-12 md:ml-8 md:mt-0 md:w-[25%]">
+          <div className="hidden md:ml-8 md:block">
+            <HighlightToc toc={toc} />
+          </div>
+          <div className="md:col-span-3">
             {/* @ts-expect-error Server Component */}
-            <Aside />
+            <RelatedArticle categoryId={post.category.id} postId={post.id} />
           </div>
         </div>
       </div>

@@ -8,13 +8,15 @@ import Image from "next/image"
 import { MdQueryBuilder } from "react-icons/md"
 import dayjs from "dayjs"
 
+export const dynamicParams = false
+
 type PostData = {
   contents: Post[]
 }
 
 const getPosts = async (id: string) => {
   const res = await fetch(
-    `https://finance-blog.microcms.io/api/v1/blogs?filters=category[equals]${id}`,
+    `https://finance-blog.microcms.io/api/v1/blogs?limit=999&filters=category[equals]${id}`,
     {
       headers: {
         "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
@@ -74,7 +76,7 @@ export const generateStaticParams = async () => {
 
   const paths = categories.map((category) => {
     return {
-      id: category.id.toString(),
+      id: category.id,
     }
   })
   return [...paths]
@@ -90,7 +92,7 @@ const CategoryPage = async ({ params }: Props) => {
 
   return (
     <>
-      <ul className="flex items-center space-x-1 py-3 text-sm tracking-wider text-gray-500">
+      <ul className="flex items-center space-x-1 py-4 text-sm tracking-wider text-gray-500">
         <li>
           <Link
             href="/"
@@ -122,34 +124,21 @@ const CategoryPage = async ({ params }: Props) => {
                   className="flex h-full flex-col overflow-hidden rounded-lg border shadow-md transition hover:-translate-y-1 hover:shadow-lg"
                   prefetch={false}
                 >
-                  {post.eyecatch?.url ? (
-                    <div className="relative aspect-[2/1]">
-                      <span className="absolute left-2 top-2 z-10 rounded-full bg-primary-color px-2 py-[2px] text-sm text-white">
-                        {post.category.name}
-                      </span>
-                      <Image
-                        src={post.eyecatch?.url}
-                        fill
-                        alt={post.title}
-                        priority
-                        className="h-auto w-full object-cover"
-                        sizes="(max-width: 575px) 100vw,
+                  <div className="relative aspect-[2/1]">
+                    <span className="absolute left-2 top-2 z-10 rounded-full bg-primary-color px-2 py-[2px] text-sm text-white">
+                      {post.category.name}
+                    </span>
+                    <Image
+                      src={post.eyecatch?.url || "/no_image.jpg"}
+                      fill
+                      alt={post.title}
+                      // priority
+                      className="h-auto w-full object-cover"
+                      sizes="(max-width: 575px) 100vw,
               (max-width: 991px) 50vw,
           40vw"
-                      />
-                    </div>
-                  ) : (
-                    <Image
-                      src="/no_image.jpg"
-                      alt="No Image"
-                      fill
-                      priority
-                      className="mx-auto h-auto w-full"
-                      sizes="(max-width: 575px) 100vw,
-            (max-width: 991px) 50vw,
-          40vw"
                     />
-                  )}
+                  </div>
                   <div className="flex-1 bg-white p-2 pb-10">
                     <h2 className="line-clamp-3 leading-6 tracking-widest">
                       {post.title}

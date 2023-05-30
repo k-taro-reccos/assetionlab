@@ -26,13 +26,6 @@ export const Aside = async () => {
   return (
     <div className="flex flex-col gap-6 md:h-full">
       <div className="order-2 space-y-2 rounded bg-white p-4 md:order-1">
-        {/* <Avatar
-          size={80}
-          radius={999}
-          classNames={{
-            root: "mx-auto",
-          }}
-        /> */}
         <div className="text-center">タロー</div>
         <div>
           テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト

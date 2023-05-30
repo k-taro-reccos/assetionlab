@@ -46,7 +46,7 @@ export const CategoryList = async () => {
                   src="https://source.unsplash.com/M_UOjtOZ-C4"
                   alt={category.name}
                   fill
-                  priority
+                  // priority
                   sizes="(max-width: 767px) 50vw, 25vw"
                   className="h-auto w-full rounded-lg object-cover"
                 />

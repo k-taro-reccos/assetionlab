@@ -4,7 +4,7 @@ import { Search } from "./Search"
 
 export const Header: FC = () => {
   return (
-    <header className="fixed left-0 top-0 z-50 h-12 w-full bg-primary-color shadow-md">
+    <header className="fixed left-0 top-0 z-30 h-12 w-full bg-primary-color shadow-md">
       <div className="mx-auto h-full max-w-7xl">
         <div className="flex h-full items-center justify-between sm:mx-3">
           <Link

@@ -2,7 +2,6 @@ import "./globals.css"
 import { Noto_Sans_JP } from "next/font/google"
 import { ReactNode } from "react"
 import { Metadata } from "next"
-import { Provider } from "./components/Provider"
 import { Header } from "./components/Header"
 import { Footer } from "./components/Footer"
 import { Wrapper } from "./components/Wrapper"
@@ -10,7 +9,6 @@ import { Wrapper } from "./components/Wrapper"
 const font = Noto_Sans_JP({
   subsets: ["latin"],
   weight: ["400", "700"],
-  display: "swap",
 })
 
 export const metadata: Metadata = {
@@ -21,17 +19,15 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ja" className={font.className}>
-      <Provider>
-        <body>
-          <Wrapper>
-            <Header />
-            <main className="container mx-auto mt-12 w-full max-w-7xl flex-1 px-3 sm:px-8">
-              {children}
-            </main>
-            <Footer />
-          </Wrapper>
-        </body>
-      </Provider>
+      <body>
+        <Wrapper>
+          <Header />
+          <main className="container mx-auto mt-12 w-full max-w-7xl flex-1 px-3 sm:px-5">
+            {children}
+          </main>
+          <Footer />
+        </Wrapper>
+      </body>
     </html>
   )
 }

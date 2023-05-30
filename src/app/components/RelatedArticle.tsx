@@ -17,7 +17,7 @@ const getRelatedArticle = async (categoryId: string) => {
   //   },
   // })
   const res = await fetch(
-    `https://finance-blog.microcms.io/api/v1/blogs?filters=category[equals]${categoryId}`,
+    `https://finance-blog.microcms.io/api/v1/blogs?limit=7&filters=category[equals]${categoryId}`,
     {
       headers: {
         "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
@@ -44,7 +44,7 @@ export const RelatedArticle = async ({ categoryId, postId }: Props) => {
   return (
     <>
       {posts.length > 0 && (
-        <div className="mt-12 rounded bg-white px-4 py-6 sm:px-6 sm:py-8">
+        <div className="rounded bg-white px-4 py-6 sm:px-6 sm:py-8">
           <div className="text-center">
             <span className="section-title">関連記事</span>
           </div>
@@ -58,31 +58,18 @@ export const RelatedArticle = async ({ categoryId, postId }: Props) => {
                     className="flex h-full flex-col overflow-hidden rounded-lg border shadow-md transition hover:-translate-y-1 hover:shadow-lg"
                     prefetch={false}
                   >
-                    {post.eyecatch?.url ? (
-                      <div className="relative aspect-[2/1]">
-                        <Image
-                          src={post.eyecatch?.url}
-                          fill
-                          alt={post.title}
-                          // priority
-                          className="h-auto w-full object-cover"
-                          sizes="(max-width: 575px) 100vw,
+                    <div className="relative aspect-[2/1]">
+                      <Image
+                        src={post.eyecatch?.url || "/no_image.jpg"}
+                        fill
+                        alt={post.title}
+                        // priority
+                        className="h-auto w-full object-cover"
+                        sizes="(max-width: 575px) 100vw,
               (max-width: 991px) 50vw,
           40vw"
-                        />
-                      </div>
-                    ) : (
-                      <Image
-                        src="/no_image.jpg"
-                        alt="No Image"
-                        fill
-                        priority
-                        className="mx-auto h-auto w-full"
-                        sizes="(max-width: 575px) 100vw,
-            (max-width: 991px) 50vw,
-          40vw"
                       />
-                    )}
+                    </div>
                     <div className="flex-1 bg-white p-2 pb-10">
                       <h2 className="line-clamp-3 leading-6 tracking-widest">
                         {post.title}

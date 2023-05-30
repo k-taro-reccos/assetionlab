@@ -1,7 +1,6 @@
 "use client"
 
-import { useScrollIntoView } from "@mantine/hooks"
-import { FC, ReactNode, useEffect, useState } from "react"
+import {  FC, ReactNode, useEffect, useState } from "react"
 import { HiChevronUp } from "react-icons/hi"
 
 type Props = {
@@ -10,35 +9,52 @@ type Props = {
 
 export const Wrapper: FC<Props> = ({ children }) => {
   const [showScrollToTop, setShowScrollToTop] = useState(false)
-  const { scrollIntoView, targetRef } = useScrollIntoView<HTMLDivElement>({
-    duration: 500,
-  })
 
   const watchScroll = () => {
     const basePosition = 300
     const scrollPosition = window.scrollY
     setShowScrollToTop(basePosition <= scrollPosition)
   }
+  
+  // const handleKeyPress = (e: KeyboardEvent) => {
+  //   if (e.key === "Enter") {
+  //     e.preventDefault()
+  //     // 他の処理を実行する
+  //   }
+  // }
 
   useEffect(() => {
     window.addEventListener("scroll", watchScroll)
+    // window.addEventListener("keydown", handleKeyPress)
     return () => {
       window.removeEventListener("scroll", watchScroll)
+      // window.removeEventListener("keydown", handleKeyPress)
     }
   }, [])
 
+  // useEffect(() => {
+  //   window.addEventListener("keydown", handleKeyPress)
+  //   return () => {
+  //     window.removeEventListener("keydown", handleKeyPress)
+  //   }
+  // }, [])
+
+  const onScrollTop = () => {
+    window.scroll({ top: 0, behavior: "smooth" })
+  }
+
   return (
-    <div className="flex min-h-screen flex-col bg-gray-100" ref={targetRef}>
+    <div className="flex min-h-screen flex-col bg-gray-100">
       {children}
-      {showScrollToTop && (
-        <button
-          type="button"
-          onClick={() => scrollIntoView()}
-          className="fixed bottom-3 right-3 z-50 sm:bottom-5 sm:right-5"
-        >
-          <HiChevronUp className="h-10 w-10 cursor-pointer rounded-full bg-gray-500 text-white shadow hover:opacity-70" />
-        </button>
-      )}
+      <button
+        type="button"
+        onClick={onScrollTop}
+        className={`fixed bottom-5 right-3 z-50 opacity-0 transition duration-500 sm:bottom-6 sm:right-5 ${
+          showScrollToTop && "opacity-100"
+        }`}
+      >
+        <HiChevronUp className="h-10 w-10 cursor-pointer rounded-full bg-gray-500 text-white shadow transition hover:opacity-70" />
+      </button>
     </div>
   )
 }

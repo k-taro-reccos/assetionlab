@@ -1,6 +1,6 @@
 import { Aside } from "@/app/components/Aside"
 import { Search } from "@/app/components/Search"
-import Link from "next/link"
+// import Link from "next/link"
 import React from "react"
 import { HiChevronRight, HiHome } from "react-icons/hi"
 import { Category } from "types"
@@ -30,17 +30,17 @@ const NotFound = async () => {
   
   return (
     <>
-      <ul className="flex items-center space-x-1 py-3 text-sm text-gray-500">
+      <ul className="flex items-center space-x-1 py-4 text-sm text-gray-500">
         <li>
-          <Link
+          <a
             href="/"
-            as="/"
+            // as="/"
             className="flex items-center space-x-1 hover:underline"
-            prefetch={false}
+            // prefetch={false}
           >
             <HiHome className="h-4 w-4" />
             <span>ホーム</span>
-          </Link>
+          </a>
         </li>
         <li className="flex items-center space-x-1">
           <HiChevronRight className="h-5 w-5" />
@@ -74,14 +74,14 @@ const NotFound = async () => {
                   <ul className="mt-6 list-inside list-disc space-y-4 pl-4">
                     {categories.map((category) => (
                       <li key={category.id}>
-                        <Link
+                        <a
                           href={`/category/${category.id}`}
-                          as={`/category/${category.id}`}
+                          // as={`/category/${category.id}`}
                           className="text-gray-500 hover:underline"
-                          prefetch={false}
+                          // prefetch={false}
                         >
                           {category.name}
-                        </Link>
+                        </a>
                       </li>
                     ))}
                   </ul>

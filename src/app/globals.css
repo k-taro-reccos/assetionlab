@@ -23,18 +23,18 @@
   @apply font-bold underline decoration-emphasis decoration-8 underline-offset-[-4px];
 }
 
-/* .balloon-left {
+.balloon-left {
   @apply relative inline-block rounded-md border-2 border-primary-color bg-blue-50 p-4 before:absolute before:-left-6 before:top-2 before:z-10 before:border-[12px] before:border-transparent before:border-r-primary-color after:absolute after:-left-[21px] after:top-2 after:z-20 after:border-[12px] after:border-transparent after:border-r-blue-50;
 }
 
 .balloon-right {
   @apply relative inline-block rounded-md border-2 border-primary-color bg-blue-50 p-4 before:absolute before:-right-6 before:top-2 before:z-10 before:border-[12px] before:border-transparent before:border-l-primary-color after:absolute after:-right-[21px] after:top-2 after:z-20 after:border-[12px] after:border-transparent after:border-l-blue-50;
-} */
+}
 
-.balloon-left {
+/* .balloon-left {
   @apply relative inline-block rounded-md bg-gray-100 p-4 before:absolute before:-left-6 before:top-3 before:z-10 before:border-[12px] before:border-transparent before:border-r-gray-100 after:absolute after:-left-[21px] after:top-3 after:z-20 after:border-[12px] after:border-transparent after:border-r-gray-100;
 }
 
 .balloon-right {
   @apply relative inline-block rounded-md bg-gray-100 p-4 before:absolute before:-right-6 before:top-3 before:z-10 before:border-[12px] before:border-transparent before:border-l-gray-100 after:absolute after:-right-[21px] after:top-3 after:z-20 after:border-[12px] after:border-transparent after:border-l-gray-100;
-}
+} */

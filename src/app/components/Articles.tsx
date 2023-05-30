@@ -12,7 +12,7 @@ const getPosts = async () => {
   // const data = await client.getList<Post>({
   //   endpoint: "blogs"
   // })
-  const res = await fetch("https://finance-blog.microcms.io/api/v1/blogs", {
+  const res = await fetch("https://finance-blog.microcms.io/api/v1/blogs?limit=999", {
     headers: {
       "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
     },
@@ -38,38 +38,22 @@ export const Articles = async () => {
             className="flex h-full flex-col overflow-hidden rounded-lg border shadow-md transition hover:-translate-y-1 hover:shadow-lg"
             prefetch={false}
           >
-            {post.eyecatch?.url ? (
-              <div className="relative aspect-[2/1]">
-                  <span className="absolute left-2 top-2 z-10 rounded-full bg-primary-color px-2 py-[2px] text-sm text-white">
-                    {post.category.name}
-                  </span>
-                <Image
-                  src={post.eyecatch?.url}
-                  fill
-                  alt={post.title}
-                  // priority
-                  className="h-auto w-full object-cover"
-                  sizes="(max-width: 575px) 100vw,
+            <div className="relative aspect-[2/1]">
+              <span className="absolute left-2 top-2 z-10 rounded-full bg-primary-color px-2 py-[2px] text-sm text-white">
+                {post.category.name}
+              </span>
+              <Image
+                src={post.eyecatch?.url || "/no_image.jpg"}
+                fill
+                alt={post.title}
+                className="h-auto w-full object-cover"
+                sizes="(max-width: 575px) 100vw,
               (max-width: 991px) 50vw,
           40vw"
-                />
-              </div>
-            ) : (
-              <Image
-                src="/no_image.jpg"
-                alt="No Image"
-                fill
-                priority
-                className="mx-auto h-auto w-full"
-                sizes="(max-width: 575px) 100vw,
-            (max-width: 991px) 50vw,
-          40vw"
               />
-            )}
+            </div>
             <div className="flex-1 bg-white p-2 pb-10">
-              <h2
-                className="line-clamp-3 leading-6 tracking-widest"
-              >
+              <h2 className="line-clamp-3 leading-6 tracking-widest">
                 {post.title}
               </h2>
               <div className="absolute bottom-2 right-2 flex items-center">
