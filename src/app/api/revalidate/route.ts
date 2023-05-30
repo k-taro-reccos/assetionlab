@@ -8,8 +8,8 @@ export const runtime = "edge"
 //   contents: Post[]
 // }
 
-export async function POST(request: Request) {
-  console.log(request)
+export async function POST() {
+  // const res = await request.json()
 
   // const res = await fetch(
   //   "https://finance-blog.microcms.io/api/v1/blogs?limit=999",
@@ -23,6 +23,6 @@ export async function POST(request: Request) {
   //   throw new Error("Failed to fetch data")
   // }
   // const data: Data = await res.json()
-  revalidateTag("posts")
+  await revalidateTag("posts")
   return NextResponse.json({ revalidated: true })
 }

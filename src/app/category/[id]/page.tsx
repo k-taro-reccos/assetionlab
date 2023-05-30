@@ -8,7 +8,7 @@ import Image from "next/image"
 import { MdQueryBuilder } from "react-icons/md"
 import dayjs from "dayjs"
 
-export const dynamicParams = false
+// export const dynamicParams = false
 
 type PostData = {
   contents: Post[]

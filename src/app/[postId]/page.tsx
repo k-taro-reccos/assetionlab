@@ -14,7 +14,7 @@ import { useTextLimit } from "@/hooks/useTextLimit"
 import { draftMode } from "next/headers"
 import { HighlightToc } from "../components/HighlightToc"
 
-// export const dynamicParams = false
+export const dynamicParams = false
 
 const getDetailPost = async (contentId: string) => {
   const { isEnabled } = draftMode()
@@ -150,7 +150,7 @@ const PostPage = async ({ params }: Props) => {
   const id = params.postId
   const { post, toc } = await getDetailPost(id)
 
-  if (!post.id) {
+  if (!post) {
     notFound()
   }
 
