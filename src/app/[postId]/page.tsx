@@ -41,7 +41,7 @@ const getDetailPost = async (contentId: string) => {
     headers: {
       "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
     },
-    next: { tags: ["posts"] },
+    // next: { tags: ["posts"] },
   })
 
   if (!res.ok) {
@@ -94,11 +94,10 @@ type Data = {
 }
 
 export const generateStaticParams = async () => {
-  const res = await fetch("https://finance-blog.microcms.io/api/v1/blogs", {
+  const res = await fetch("https://finance-blog.microcms.io/api/v1/blogs?limit=999", {
     headers: {
       "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
     },
-    next: { tags: ["posts"] },
   })
 
   if (!res.ok) {
@@ -132,7 +131,6 @@ export const generateMetadata = async ({
       headers: {
         "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
       },
-      next: { tags: ["posts"] },
     }
   )
 
