@@ -18,6 +18,7 @@ const getPosts = async () => {
       headers: {
         "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
       },
+      next: { tags: ["posts"] },
     }
   )
   if (!res.ok) {
