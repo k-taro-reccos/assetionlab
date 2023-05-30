@@ -208,6 +208,7 @@ const PostPage = async ({ params }: Props) => {
                   src={post.eyecatch.url}
                   alt={post.title}
                   fill
+                  priority
                   className="h-auto w-full object-cover"
                   sizes="(max-width: 991px) 100vw, 75vw"
                 />
@@ -234,6 +235,7 @@ const PostPage = async ({ params }: Props) => {
                             src={sec.image?.url}
                             alt={sec.name}
                             fill
+                            priority
                             className="h-auto w-full rounded-full object-cover"
                             sizes="20vw"
                           />

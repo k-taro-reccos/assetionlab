@@ -57,7 +57,7 @@ export const SearchResults = async ({ searchParams }: Props) => {
                 src={post.eyecatch?.url || "/no_image.jpg"}
                 fill
                 alt={post.title}
-                // priority
+                priority
                 className="h-auto w-full object-cover"
                 sizes="(max-width: 575px) 100vw,
               (max-width: 991px) 50vw,

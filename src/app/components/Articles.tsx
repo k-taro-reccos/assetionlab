@@ -45,6 +45,7 @@ export const Articles = async () => {
               <Image
                 src={post.eyecatch?.url || "/no_image.jpg"}
                 fill
+                priority
                 alt={post.title}
                 className="h-auto w-full object-cover"
                 sizes="(max-width: 575px) 100vw,

@@ -1,7 +1,5 @@
 "use client"
 
-// import { Modal } from "@mantine/core"
-// import { useDisclosure } from "@mantine/hooks"
 import { useRouter } from "next/navigation"
 import { ComponentProps, FC, useState } from "react"
 import { HiSearch } from "react-icons/hi"
@@ -16,7 +14,6 @@ export const Search: FC<Props> = ({ header }) => {
   const [searchText, setSearchText] = useState("")
   const [searchHeaderText, setSearchHeaderText] = useState("")
   const [open, setOpen] = useState(false)
-  // const [opened, { open, close }] = useDisclosure(false)
 
   const handleSubmit: ComponentProps<"form">["onSubmit"] = async (e) => {
     e.preventDefault()
