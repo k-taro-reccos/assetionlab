@@ -6,7 +6,9 @@ import { Header } from "./components/Header"
 import { Footer } from "./components/Footer"
 import { Wrapper } from "./components/Wrapper"
 
-const font = Noto_Sans_JP()
+const font = Noto_Sans_JP({
+  subsets: ["latin"],
+})
 
 export const metadata: Metadata = {
   title: "金融ブログ!!!!",
