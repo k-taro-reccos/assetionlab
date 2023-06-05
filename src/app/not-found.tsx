@@ -1,5 +1,6 @@
 import { Aside } from "@/app/components/Aside"
 import { Search } from "@/app/components/Search"
+import { Metadata } from "next"
 // import Link from "next/link"
 import React from "react"
 import { HiChevronRight, HiHome } from "react-icons/hi"
@@ -7,6 +8,10 @@ import { Category } from "types"
 
 type Data = {
   contents: Category[]
+}
+
+export const metadata: Metadata = {
+  title: "ページが見つかりませんでした。",
 }
 
 const getCategories = async () => {
@@ -27,7 +32,7 @@ const getCategories = async () => {
 
 const NotFound = async () => {
   const categories = await getCategories()
-  
+
   return (
     <>
       <ul className="flex items-center space-x-1 py-4 text-sm text-gray-500">

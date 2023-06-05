@@ -30,41 +30,6 @@ export const Search: FC<Props> = ({ header }) => {
     <>
       {header ? (
         <>
-          {/* <div
-            onClick={open}
-            className="flex h-full cursor-pointer items-center px-3 focus:outline-none sm:px-5"
-          >
-            <HiSearch className="h-7 w-7 text-white" />
-          </div>
-          <Modal
-            opened={opened}
-            onClose={close}
-            withCloseButton={false}
-            size="80%"
-            centered
-            padding={0}
-            radius="md"
-          >
-            <form onSubmit={handleSubmit} className="relative">
-              <input
-                type="text"
-                className="w-full rounded p-4 focus:outline-none"
-                autoFocus
-                placeholder="検索"
-                value={searchHeaderText}
-                onChange={(e) => setSearchHeaderText(e.target.value)}
-              />
-              <button type="submit">
-                <HiSearch className="absolute right-2 top-1/2 h-7 w-7 -translate-y-1/2 cursor-pointer" />
-              </button>
-            </form>
-          </Modal> */}
-          {/* <div
-            // onClick={open}
-            className="flex h-full cursor-pointer items-center px-3 focus:outline-none sm:px-5"
-          >
-            <HiSearch className="h-7 w-7 text-white" />
-          </div> */}
           <Dialog.Root open={open} onOpenChange={() => setOpen(true)}>
             <Dialog.Trigger asChild>
               <div

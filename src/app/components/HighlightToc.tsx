@@ -64,7 +64,11 @@ export const HighlightToc: FC<Props> = ({ toc }) => {
           <li
             key={index}
             ref={activeItem === h2.id ? observerRef : null}
-            className={activeItem === h2.id ? "text-blue-300" : ""}
+            className={
+              activeItem === h2.id
+                ? "text-primary-color opacity-100"
+                : "opacity-40"
+            }
           >
             <a
               href={`#${h2.id}`}

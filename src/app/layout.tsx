@@ -8,7 +8,6 @@ import { Wrapper } from "./components/Wrapper"
 
 const font = Noto_Sans_JP({
   subsets: ["latin"],
-  weight: ["400", "700"],
 })
 
 export const metadata: Metadata = {

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { revalidateTag } from "next/cache"
+import { revalidatePath } from "next/cache"
 // import { Post } from "types"
 
 export const runtime = "edge"
@@ -23,6 +23,6 @@ export async function POST() {
   //   throw new Error("Failed to fetch data")
   // }
   // const data: Data = await res.json()
-  await revalidateTag("posts")
+  revalidatePath("/")
   return NextResponse.json({ revalidated: true })
 }
