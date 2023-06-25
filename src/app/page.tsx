@@ -22,7 +22,7 @@ const Home = () => {
         </div>
         <aside className="mt-12 md:ml-8 md:mt-0 md:w-1/4">
           {/* @ts-expect-error Server Component */}
-          <Aside />
+          <Aside topPage />
         </aside>
       </div>
     </>

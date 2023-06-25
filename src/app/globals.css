@@ -7,15 +7,41 @@
 }
 
 .rich-editor {
-  @apply prose-headings:pl-4 prose-h1:text-3xl prose-h2:mb-6 prose-h2:mt-12 prose-h2:scroll-mt-12 prose-h2:rounded prose-h2:border-l-4 prose-h2:border-primary-color prose-h2:bg-blue-100 prose-h2:py-3 prose-h2:text-2xl prose-h2:font-bold prose-h3:relative prose-h3:mb-4 prose-h3:mt-8 prose-h3:scroll-mt-12 prose-h3:py-1 prose-h3:text-xl prose-h3:font-semibold prose-h3:before:absolute  prose-h3:before:left-0 prose-h3:before:top-0  prose-h3:before:h-full prose-h3:before:w-1 prose-h3:before:rounded prose-h3:before:bg-primary-color prose-h4:my-1 prose-h4:border-b-4 prose-h4:border-blue-100 prose-h4:py-1 prose-h4:text-lg prose-h4:font-medium prose-p:leading-7 prose-p:tracking-wider prose-a:text-primary-color prose-a:underline hover:prose-a:opacity-70 prose-img:my-6 prose-img:aspect-video prose-img:h-auto prose-img:w-full prose-img:object-cover;
+  @apply prose-headings:pl-4 prose-h1:text-3xl prose-h2:mb-8 prose-h2:mt-12 prose-h2:scroll-mt-12 prose-h2:rounded prose-h2:border-l-4 prose-h2:border-primary-color prose-h2:bg-blue-100 prose-h2:py-3 prose-h2:text-2xl prose-h2:font-bold prose-h3:relative prose-h3:mb-6 prose-h3:mt-10 prose-h3:scroll-mt-12 prose-h3:py-1 prose-h3:text-xl prose-h3:font-semibold prose-h3:before:absolute prose-h3:before:left-0 prose-h3:before:top-0 prose-h3:before:h-full prose-h3:before:w-1 prose-h3:before:rounded prose-h3:before:bg-primary-color prose-h4:my-1 prose-h4:border-b-4 prose-h4:border-blue-100 prose-h4:py-1 prose-h4:text-lg prose-h4:font-medium prose-p:mb-10 prose-p:leading-7 prose-p:tracking-wider prose-a:text-primary-color prose-a:underline hover:prose-a:opacity-70 prose-blockquote:relative prose-blockquote:my-10 prose-blockquote:bg-gray-100 prose-blockquote:p-8 prose-blockquote:pt-12 prose-blockquote:before:absolute prose-blockquote:before:left-3 prose-blockquote:before:top-3 prose-blockquote:before:h-10 prose-blockquote:before:w-10 prose-blockquote:before:bg-[url("/quote_left.svg")] prose-blockquote:before:bg-no-repeat
+  prose-blockquote:before:object-cover prose-ol:my-12 prose-ol:space-y-4 prose-ol:rounded prose-ol:border-2 prose-ol:border-primary-color prose-ol:bg-gray-100 prose-ol:px-10 prose-ol:py-8 prose-ol:tracking-wider prose-ul:my-12 prose-ul:list-disc prose-ul:space-y-4 prose-ul:rounded prose-ul:border-2
+  prose-ul:border-primary-color prose-ul:bg-gray-100 prose-ul:py-8 prose-ul:pl-16 prose-ul:pr-10 prose-ul:tracking-wider prose-img:my-6 prose-img:h-auto
+  prose-img:w-full prose-img:object-cover;
 }
 
 @layer components {
   .rich-editor > ul > li {
-    @apply text-gray-900;
+    @apply marker:text-sm;
+  }
+  .rich-editor > ol {
+    counter-reset: number;
   }
   .rich-editor > ol > li {
-    @apply text-blue-500;
+    position: relative;
+    padding-left: 32px;
+  }
+  .rich-editor > ol > li::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #60a5fa;
+    width: 24px;
+    height: 24px;
+    counter-increment: number;
+    content: counter(number);
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+  .rich-editor > blockquote > p {
+    @apply mb-0;
   }
 }
 
@@ -23,18 +49,22 @@
   @apply font-bold underline decoration-emphasis decoration-8 underline-offset-[-4px];
 }
 
-.balloon-left {
-  @apply relative inline-block rounded-md border-2 border-primary-color bg-blue-50 p-4 before:absolute before:-left-6 before:top-2 before:z-10 before:border-[12px] before:border-transparent before:border-r-primary-color after:absolute after:-left-[21px] after:top-2 after:z-20 after:border-[12px] after:border-transparent after:border-r-blue-50;
-}
-
-.balloon-right {
-  @apply relative inline-block rounded-md border-2 border-primary-color bg-blue-50 p-4 before:absolute before:-right-6 before:top-2 before:z-10 before:border-[12px] before:border-transparent before:border-l-primary-color after:absolute after:-right-[21px] after:top-2 after:z-20 after:border-[12px] after:border-transparent after:border-l-blue-50;
+.source {
+  @apply mt-3 block text-right text-sm text-gray-400;
 }
 
 /* .balloon-left {
-  @apply relative inline-block rounded-md bg-gray-100 p-4 before:absolute before:-left-6 before:top-3 before:z-10 before:border-[12px] before:border-transparent before:border-r-gray-100 after:absolute after:-left-[21px] after:top-3 after:z-20 after:border-[12px] after:border-transparent after:border-r-gray-100;
+  @apply relative inline-block rounded-md border-2 border-primary-color bg-blue-50 p-4 before:absolute before:-left-6 before:top-2 before:z-10 before:border-[12px] before:border-transparent before:border-r-primary-color after:absolute after:-left-[21px] after:top-2 after:z-20 after:border-[12px] after:border-transparent after:border-r-blue-50;
+} */
+
+/* .balloon-right {
+  @apply relative inline-block rounded-md border-2 border-primary-color bg-blue-50 p-4 before:absolute before:-right-6 before:top-2 before:z-10 before:border-[12px] before:border-transparent before:border-l-primary-color after:absolute after:-right-[21px] after:top-2 after:z-20 after:border-[12px] after:border-transparent after:border-l-blue-50;
+} */
+
+.balloon-left {
+  @apply relative inline-block rounded-md border-2 border-gray-300 p-4 before:absolute before:-left-6 before:top-3 before:z-10 before:border-[12px] before:border-transparent before:border-r-gray-300 after:absolute after:-left-[21px] after:top-3 after:z-20 after:border-[12px] after:border-transparent after:border-r-white;
 }
 
 .balloon-right {
-  @apply relative inline-block rounded-md bg-gray-100 p-4 before:absolute before:-right-6 before:top-3 before:z-10 before:border-[12px] before:border-transparent before:border-l-gray-100 after:absolute after:-right-[21px] after:top-3 after:z-20 after:border-[12px] after:border-transparent after:border-l-gray-100;
-} */
+  @apply relative inline-block rounded-md border-2 border-gray-300 p-4 before:absolute before:-right-6 before:top-3 before:z-10 before:border-[12px] before:border-transparent before:border-l-gray-300 after:absolute after:-right-[21px] after:top-3 after:z-20 after:border-[12px] after:border-transparent after:border-l-white;
+}

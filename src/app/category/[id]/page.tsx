@@ -8,7 +8,7 @@ import Image from "next/image"
 import { MdQueryBuilder } from "react-icons/md"
 import dayjs from "dayjs"
 
-// export const dynamicParams = false
+export const dynamicParams = false
 
 type PostData = {
   contents: Post[]
@@ -21,7 +21,6 @@ const getPosts = async (id: string) => {
       headers: {
         "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
       },
-      next: { tags: ["posts"] },
     }
   )
   if (!res.ok) {
@@ -54,6 +53,7 @@ export const generateMetadata = async ({
 
   return {
     title: data.name,
+    description: data.name
   }
 }
 

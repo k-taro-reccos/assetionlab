@@ -11,6 +11,7 @@ export const HighlightToc: FC<Props> = ({ toc }) => {
   const [showScrollToTop, setShowScrollToTop] = useState(false)
   const [activeItem, setActiveItem] = useState<string | null>(null)
   const observerRef = useRef<HTMLLIElement | null>(null)
+  const observerRefValue = observerRef.current
 
   useEffect(() => {
     const callback = (entries: IntersectionObserverEntry[]) => {
@@ -27,6 +28,7 @@ export const HighlightToc: FC<Props> = ({ toc }) => {
       const basePosition = target[0].offsetTop - 1000
       const scrollPosition = window.scrollY
       setShowScrollToTop(basePosition <= scrollPosition)
+      console.log(basePosition, scrollPosition)
     }
 
     window.addEventListener("scroll", watchScroll)
@@ -44,30 +46,29 @@ export const HighlightToc: FC<Props> = ({ toc }) => {
     }
 
     return () => {
-      if (observerRef.current) {
-        obs.unobserve(observerRef.current)
+      if (observerRefValue) {
+        obs.unobserve(observerRefValue)
       }
       window.removeEventListener("scroll", watchScroll)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
     <div
-      className={`transition md:sticky md:top-16 ${
+      className={`transition ${
         showScrollToTop
           ? "pointer-events-auto opacity-100"
           : "pointer-events-none opacity-0"
       }`}
     >
-      <ol className="list-inside list-decimal space-y-3 px-6 py-4 font-semibold text-gray-700 marker:text-lg">
+      <ul className="list-inside space-y-3 px-6 py-4 font-semibold text-gray-400 marker:text-lg">
         {toc.map((h2, index) => (
           <li
             key={index}
             ref={activeItem === h2.id ? observerRef : null}
             className={
-              activeItem === h2.id
-                ? "text-primary-color opacity-100"
-                : "opacity-40"
+              activeItem === h2.id ? "text-primary-color opacity-100" : ""
             }
           >
             <a
@@ -78,7 +79,7 @@ export const HighlightToc: FC<Props> = ({ toc }) => {
             </a>
           </li>
         ))}
-      </ol>
+      </ul>
     </div>
   )
 }

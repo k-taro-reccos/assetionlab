@@ -18,7 +18,6 @@ const getPosts = async () => {
       headers: {
         "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
       },
-      next: { tags: ["posts"] },
     }
   )
   if (!res.ok) {
@@ -33,13 +32,13 @@ export const Articles = async () => {
   const posts = await getPosts()
 
   return (
-    <div className="grid grid-cols-1 gap-4 xs:grid-cols-2">
+    <div className="grid grid-cols-1 gap-5 xs:grid-cols-2">
       {posts.map((post) => (
         <article className="relative" key={post.id}>
           <Link
             href={`/${post.id}`}
             as={`/${post.id}`}
-            className="flex h-full flex-col overflow-hidden rounded-lg border shadow-md transition hover:-translate-y-1 hover:shadow-lg"
+            className="flex h-full flex-col overflow-hidden rounded-lg border bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl"
             prefetch={false}
           >
             <div className="relative aspect-[2/1]">
@@ -50,6 +49,8 @@ export const Articles = async () => {
                 src={post.eyecatch?.url || "/no_image.jpg"}
                 fill
                 priority
+                // width={post.eyecatch.width}
+                // height={post.eyecatch.height}
                 alt={post.title}
                 className="h-auto w-full object-cover"
                 sizes="(max-width: 575px) 100vw,
@@ -57,11 +58,11 @@ export const Articles = async () => {
           40vw"
               />
             </div>
-            <div className="flex-1 bg-white p-2 pb-10">
-              <h2 className="line-clamp-3 leading-6 tracking-widest">
+            <div className="flex flex-1 flex-col p-2">
+              <h2 className="line-clamp-2 flex-1 leading-6 tracking-widest">
                 {post.title}
               </h2>
-              <div className="absolute bottom-2 right-2 flex items-center">
+              <div className="flex items-center justify-end pt-3">
                 <MdQueryBuilder className="mt-[2px] text-gray-400" />
                 <time className="ml-[2px] text-sm tracking-wider text-gray-400">
                   {dayjs(post.publishedAt).format("YYYY/MM/DD")}

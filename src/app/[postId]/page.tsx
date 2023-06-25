@@ -11,16 +11,14 @@ import { notFound } from "next/navigation"
 import { Metadata } from "next"
 import { RelatedArticle } from "../components/RelatedArticle"
 import { useTextLimit } from "@/hooks/useTextLimit"
-import { draftMode } from "next/headers"
 import { HighlightToc } from "../components/HighlightToc"
+import { PostAside } from "../components/PostAside"
+import { Aside } from "../components/Aside"
 
 export const dynamicParams = false
 
 const getDetailPost = async (contentId: string) => {
-  const { isEnabled } = draftMode()
-  const url = isEnabled
-    ? `http://localhost:3000/api/preview?postId=${contentId}&draftKey=${contentId}`
-    : `https://finance-blog.microcms.io/api/v1/blogs/${contentId}`
+  const url = `https://finance-blog.microcms.io/api/v1/blogs/${contentId}`
 
   // const isDraft = (arg: any): arg is Draft => {
   //   if (!arg?.draftKey) {
@@ -41,7 +39,6 @@ const getDetailPost = async (contentId: string) => {
     headers: {
       "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
     },
-    next: { tags: ["posts"] },
   })
 
   if (!res.ok) {
@@ -100,7 +97,6 @@ export const generateStaticParams = async () => {
       headers: {
         "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
       },
-      next: { tags: ["posts"] },
     }
   )
 
@@ -135,7 +131,6 @@ export const generateMetadata = async ({
       headers: {
         "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
       },
-      next: { tags: ["posts"] },
     }
   )
 
@@ -143,6 +138,7 @@ export const generateMetadata = async ({
 
   return {
     title: data.title,
+    description: data.description,
   }
 }
 
@@ -159,7 +155,6 @@ const PostPage = async ({ params }: Props) => {
   return (
     <>
       <div>
-        {/* {draft.isEnabled && <div className="text-2xl">プレビューモード</div>} */}
         <ul className="flex items-center space-x-1 py-4 text-sm tracking-wider text-gray-500">
           <li>
             <Link
@@ -188,7 +183,7 @@ const PostPage = async ({ params }: Props) => {
             <span>{limitTitle}</span>
           </li>
         </ul>
-        <div className="grid gap-y-12 md:grid-cols-4">
+        <div className="grid gap-y-12 md:grid-cols-4 md:gap-x-8">
           <div className="md:col-span-3">
             <div className="rounded bg-white p-4 sm:p-6">
               <h1 className="text-3xl font-bold tracking-wider">
@@ -208,13 +203,12 @@ const PostPage = async ({ params }: Props) => {
                   </time>
                 </span>
               </div>
-              <div className="relative mt-6 aspect-video w-full">
+              <div className="mt-6">
                 <Image
-                  src={post.eyecatch.url}
+                  src={post.eyecatch?.url || "/no_image.jpg"}
                   alt={post.title}
-                  fill
-                  priority
-                  className="h-auto w-full object-cover"
+                  width={post.eyecatch?.width}
+                  height={post.eyecatch?.height}
                   sizes="(max-width: 991px) 100vw, 75vw"
                 />
               </div>
@@ -222,11 +216,9 @@ const PostPage = async ({ params }: Props) => {
                 <TableOfContents toc={toc} />
                 {post.body?.map((sec, index) =>
                   sec.fieldId === "section" ? (
-                    <section key={index}>
-                      <div className="rich-editor mt-4">
-                        {parse(sec.content)}
-                      </div>
-                    </section>
+                    <div key={index} className="rich-editor mt-4">
+                      {parse(sec.content)}
+                    </div>
                   ) : sec.fieldId === "balloon" ? (
                     <div
                       key={index}
@@ -235,13 +227,12 @@ const PostPage = async ({ params }: Props) => {
                       }`}
                     >
                       <div className="w-[15%] min-w-[60px] max-w-[80px] text-center">
-                        <div className="relative aspect-square rounded-full border">
+                        <div className="aspect-square overflow-hidden rounded-full border">
                           <Image
                             src={sec.image?.url}
                             alt={sec.name}
-                            fill
-                            priority
-                            className="h-auto w-full rounded-full object-cover"
+                            width={100}
+                            height={100}
                             sizes="20vw"
                           />
                         </div>
@@ -256,7 +247,7 @@ const PostPage = async ({ params }: Props) => {
                             : "balloon-right mr-6"
                         }  h-full max-w-[65%]`}
                       >
-                        <p className="leading-6 tracking-wider">{sec.text}</p>
+                        <p className="tracking-wider">{sec.text}</p>
                       </div>
                     </div>
                   ) : null
@@ -264,12 +255,21 @@ const PostPage = async ({ params }: Props) => {
               </div>
             </div>
           </div>
-          <div className="hidden md:ml-8 md:block">
-            <HighlightToc toc={toc} />
-          </div>
-          <div className="md:col-span-3">
+          <div className="md:order-3 md:col-span-3">
             {/* @ts-expect-error Server Component */}
             <RelatedArticle categoryId={post.category.id} postId={post.id} />
+          </div>
+          <aside className="md:order-2">
+            {/* @ts-expect-error Server Component */}
+            <PostAside>
+              <div className="hidden md:sticky md:top-16 md:mt-6 md:block">
+                <HighlightToc toc={toc} />
+              </div>
+            </PostAside>
+          </aside>
+          <div className="hidden md:order-4 md:col-span-3 md:block">
+            {/* @ts-expect-error Server Component */}
+            <Aside />
           </div>
         </div>
       </div>

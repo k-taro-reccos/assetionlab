@@ -1,6 +1,6 @@
 "use client"
 
-import {  FC, ReactNode, useEffect, useState } from "react"
+import { FC, ReactNode, useEffect, useState } from "react"
 import { HiChevronUp } from "react-icons/hi"
 
 type Props = {
@@ -15,7 +15,7 @@ export const Wrapper: FC<Props> = ({ children }) => {
     const scrollPosition = window.scrollY
     setShowScrollToTop(basePosition <= scrollPosition)
   }
-  
+
   // const handleKeyPress = (e: KeyboardEvent) => {
   //   if (e.key === "Enter") {
   //     e.preventDefault()
@@ -49,8 +49,8 @@ export const Wrapper: FC<Props> = ({ children }) => {
       <button
         type="button"
         onClick={onScrollTop}
-        className={`fixed bottom-5 right-3 z-50 opacity-0 transition duration-500 sm:bottom-6 sm:right-5 ${
-          showScrollToTop && "opacity-100"
+        className={`pointer-events-none fixed bottom-5 right-3 z-50 opacity-0 transition duration-500 sm:bottom-6 sm:right-5 ${
+          showScrollToTop && "pointer-events-auto opacity-100"
         }`}
       >
         <HiChevronUp className="h-10 w-10 cursor-pointer rounded-full bg-gray-500 text-white shadow transition hover:opacity-70" />

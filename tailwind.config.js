@@ -16,6 +16,7 @@ module.exports = {
       transparent: "transparent",
       "primary-color": "#60a5fa",
       gray: {
+        50: "#f9fafb",
         100: "#f3f4f6",
         200: "#e5e7eb",
         300: "#d1d5db",
@@ -51,14 +52,14 @@ module.exports = {
         to: { opacity: 1, transform: "translate(-50%, -50%) scale(1)" },
       },
       spin: {
-        from: { transform: "rotate(0deg)"},
-        to: {transform: "rotate(360deg)"}
-      }
+        from: { transform: "rotate(0deg)" },
+        to: { transform: "rotate(360deg)" },
+      },
     },
     animation: {
       overlayShow: "overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
       contentShow: "contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
-      spin: "spin 1s linear infinite;"
+      spin: "spin 1s linear infinite;",
     },
   },
   plugins: [require("@tailwindcss/typography")],

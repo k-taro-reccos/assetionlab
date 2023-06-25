@@ -22,7 +22,6 @@ const getRelatedArticle = async (categoryId: string) => {
       headers: {
         "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
       },
-      next: { tags: ["posts"] },
     }
   )
   if (!res.ok) {
@@ -71,11 +70,11 @@ export const RelatedArticle = async ({ categoryId, postId }: Props) => {
           40vw"
                       />
                     </div>
-                    <div className="flex-1 bg-white p-2 pb-10">
-                      <h2 className="line-clamp-3 leading-6 tracking-widest">
+                    <div className="flex flex-1 flex-col bg-white p-2">
+                      <h2 className="line-clamp-3 flex-1 leading-6 tracking-widest">
                         {post.title}
                       </h2>
-                      <div className="absolute bottom-2 right-2 flex items-center">
+                      <div className="flex items-center justify-end pt-3">
                         <MdQueryBuilder className="mt-[2px] text-gray-400" />
                         <time className="ml-[2px] text-sm tracking-wider text-gray-400">
                           {dayjs(post.publishedAt).format("YYYY/MM/DD")}

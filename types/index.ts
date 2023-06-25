@@ -21,6 +21,7 @@ export type Post = {
   publishedAt: string
   revisedat: string
   title: string
+  description: string
   eyecatch: MicroCMSImage
   category: {
     id: string

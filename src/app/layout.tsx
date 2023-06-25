@@ -11,8 +11,12 @@ const font = Noto_Sans_JP({
 })
 
 export const metadata: Metadata = {
-  title: "金融ブログ!!!!",
-  description: "お金について学ぼう",
+  title: {
+    template: "%s | 資産形成ラボ",
+    default: "資産形成ラボ",
+  },
+  description:
+    "お金についての情報を発信中。資産運用や税金、保険などはむずかしい言葉が多くなかなか勉強、行動する気にならないという方に向けてわかりやすく解説しています。",
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -21,7 +25,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <Wrapper>
           <Header />
-          <main className="container mx-auto mt-12 w-full max-w-7xl flex-1 px-3 sm:px-5">
+          <main className="container mx-auto mt-12 w-full max-w-7xl flex-1 px-3 sm:px-6 md:mt-14 md:px-8">
             {children}
           </main>
           <Footer />
