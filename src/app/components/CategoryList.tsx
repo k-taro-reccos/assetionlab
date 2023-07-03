@@ -8,7 +8,7 @@ type CategoryData = {
 
 const getCategories = async () => {
   const res = await fetch(
-    "https://finance-blog.microcms.io/api/v1/categories",
+    "https://finance-blog.microcms.io/api/v1/categories?limit=4",
     {
       headers: {
         "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
@@ -36,7 +36,7 @@ export const CategoryList = async () => {
               href={`/category/${category.id}`}
               as={`/category/${category.id}`}
               prefetch={false}
-              className="block shadow-md transition hover:-translate-y-1 hover:shadow-lg"
+              className="block overflow-hidden rounded-lg shadow-md transition hover:-translate-y-1 hover:shadow-lg"
             >
               <span className="absolute left-2 top-2 z-10 rounded bg-white px-2 text-sm sm:text-xs md:text-sm">
                 {category.name}
@@ -48,7 +48,7 @@ export const CategoryList = async () => {
                   fill
                   priority
                   sizes="(max-width: 767px) 50vw, 25vw"
-                  className="h-auto w-full rounded-lg object-cover"
+                  className="h-auto w-full object-cover"
                 />
               </div>
             </Link>

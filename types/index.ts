@@ -14,6 +14,11 @@ export type Balloon = {
   text: string
 }
 
+export type Intro = {
+  fieldId: "intro"
+  intro: string
+}
+
 export type Post = {
   id: string
   createdAt: string
@@ -31,6 +36,7 @@ export type Post = {
     revisedAt: string
     name: string
   }
+  intro: (Intro | Balloon)[]
   body: (Section | Balloon)[]
 }
 

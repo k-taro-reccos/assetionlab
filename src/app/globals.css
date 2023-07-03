@@ -6,17 +6,19 @@
   @apply relative text-2xl font-bold tracking-wider text-gray-500 before:absolute before:-left-20 before:top-1/2 before:h-[2px] before:w-14 before:-translate-y-1/2 before:bg-gray-500 after:absolute after:-right-20 after:top-1/2 after:h-[2px] after:w-14 after:-translate-y-1/2 after:bg-gray-500 before:sm:-left-28 before:sm:w-20 after:sm:-right-28 after:sm:w-20;
 }
 
+.intro {
+  @apply marker:text-primary-color prose-p:mb-10 prose-p:leading-7 prose-p:tracking-wider
+  prose-a:text-primary-color prose-a:underline hover:prose-a:opacity-70 prose-ul:relative prose-ul:list-disc prose-ul:space-y-3 prose-ul:rounded prose-ul:border-2
+  prose-ul:border-primary-color prose-ul:pb-6 prose-ul:pl-14 prose-ul:pr-6 prose-ul:pt-10 prose-ul:tracking-wider prose-ul:before:absolute  prose-ul:before:-top-4 prose-ul:before:left-6 prose-ul:before:rounded prose-ul:before:bg-primary-color prose-ul:before:px-3 prose-ul:before:py-1 prose-ul:before:text-white prose-ul:before:content-["この記事の結論！"] prose-ul:after:absolute prose-ul:after:left-10 prose-ul:after:top-4 prose-ul:after:z-10 prose-ul:after:border-l-[6px] prose-ul:after:border-r-[6px] prose-ul:after:border-t-[12px] prose-ul:after:border-transparent prose-ul:after:border-t-primary-color prose-li:font-bold prose-li:leading-7;
+}
+
 .rich-editor {
-  @apply prose-headings:pl-4 prose-h1:text-3xl prose-h2:mb-8 prose-h2:mt-12 prose-h2:scroll-mt-12 prose-h2:rounded prose-h2:border-l-4 prose-h2:border-primary-color prose-h2:bg-blue-100 prose-h2:py-3 prose-h2:text-2xl prose-h2:font-bold prose-h3:relative prose-h3:mb-6 prose-h3:mt-10 prose-h3:scroll-mt-12 prose-h3:py-1 prose-h3:text-xl prose-h3:font-semibold prose-h3:before:absolute prose-h3:before:left-0 prose-h3:before:top-0 prose-h3:before:h-full prose-h3:before:w-1 prose-h3:before:rounded prose-h3:before:bg-primary-color prose-h4:my-1 prose-h4:border-b-4 prose-h4:border-blue-100 prose-h4:py-1 prose-h4:text-lg prose-h4:font-medium prose-p:mb-10 prose-p:leading-7 prose-p:tracking-wider prose-a:text-primary-color prose-a:underline hover:prose-a:opacity-70 prose-blockquote:relative prose-blockquote:my-10 prose-blockquote:bg-gray-100 prose-blockquote:p-8 prose-blockquote:pt-12 prose-blockquote:before:absolute prose-blockquote:before:left-3 prose-blockquote:before:top-3 prose-blockquote:before:h-10 prose-blockquote:before:w-10 prose-blockquote:before:bg-[url("/quote_left.svg")] prose-blockquote:before:bg-no-repeat
-  prose-blockquote:before:object-cover prose-ol:my-12 prose-ol:space-y-4 prose-ol:rounded prose-ol:border-2 prose-ol:border-primary-color prose-ol:bg-gray-100 prose-ol:px-10 prose-ol:py-8 prose-ol:tracking-wider prose-ul:my-12 prose-ul:list-disc prose-ul:space-y-4 prose-ul:rounded prose-ul:border-2
-  prose-ul:border-primary-color prose-ul:bg-gray-100 prose-ul:py-8 prose-ul:pl-16 prose-ul:pr-10 prose-ul:tracking-wider prose-img:my-6 prose-img:h-auto
-  prose-img:w-full prose-img:object-cover;
+  @apply prose-headings:pl-4 prose-h1:text-3xl prose-h2:mb-8 prose-h2:mt-12 prose-h2:scroll-mt-12 prose-h2:rounded prose-h2:border-l-4 prose-h2:border-primary-color prose-h2:bg-blue-100 prose-h2:py-3 prose-h2:text-2xl prose-h2:font-bold prose-h3:relative prose-h3:mb-6 prose-h3:mt-10 prose-h3:scroll-mt-12 prose-h3:py-1 prose-h3:text-xl prose-h3:font-semibold prose-h3:before:absolute prose-h3:before:left-0 prose-h3:before:top-0 prose-h3:before:h-full prose-h3:before:w-1 prose-h3:before:rounded prose-h3:before:bg-primary-color prose-h4:my-1 prose-h4:border-b-4 prose-h4:border-blue-100 prose-h4:py-1 prose-h4:text-lg prose-h4:font-medium prose-p:mb-10 prose-p:leading-7 prose-p:tracking-wider prose-a:text-primary-color prose-a:underline hover:prose-a:opacity-70 prose-blockquote:relative prose-blockquote:my-10 prose-blockquote:bg-gray-100 prose-blockquote:p-8 prose-blockquote:pt-12 prose-blockquote:before:absolute prose-blockquote:before:left-3 prose-blockquote:before:top-3 prose-blockquote:before:h-10 prose-blockquote:before:w-10 prose-blockquote:before:bg-[url("/quote_left.svg")] prose-blockquote:before:bg-no-repeat prose-blockquote:before:object-cover
+  prose-ol:my-12 prose-ol:space-y-4 prose-ol:rounded prose-ol:bg-gray-100 prose-ol:p-6 prose-ol:tracking-wider prose-ul:my-12 prose-ul:list-disc prose-ul:space-y-4 prose-ul:rounded 
+  prose-ul:bg-gray-100 prose-ul:py-6 prose-ul:pl-12 prose-ul:pr-6 prose-ul:tracking-wider md:prose-h2:scroll-mt-14 md:prose-h3:scroll-mt-14;
 }
 
 @layer components {
-  .rich-editor > ul > li {
-    @apply marker:text-sm;
-  }
   .rich-editor > ol {
     counter-reset: number;
   }

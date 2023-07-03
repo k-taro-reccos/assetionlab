@@ -4,7 +4,7 @@ import Image from "next/image"
 import parse from "html-react-parser"
 import { MdQueryBuilder, MdRestore } from "react-icons/md"
 import { HiChevronRight, HiHome } from "react-icons/hi"
-import { Post, TocH2, TocH3 } from "../../../types"
+import { TocH2, TocH3 } from "../../../types"
 import { load } from "cheerio"
 import { TableOfContents } from "../components/TableOfContents"
 import { notFound } from "next/navigation"
@@ -14,11 +14,14 @@ import { useTextLimit } from "@/hooks/useTextLimit"
 import { HighlightToc } from "../components/HighlightToc"
 import { PostAside } from "../components/PostAside"
 import { Aside } from "../components/Aside"
+import { getPostDetail, getPostList } from "libs/client"
 
 export const dynamicParams = false
 
-const getDetailPost = async (contentId: string) => {
-  const url = `https://finance-blog.microcms.io/api/v1/blogs/${contentId}`
+const getToc = async (contentId: string) => {
+  // const url = draftKey
+  //   ? `https://finance-blog.microcms.io/api/v1/blogs/${contentId}?draftKey=${draftKey}`
+  //   : `https://finance-blog.microcms.io/api/v1/blogs/${contentId}`
 
   // const isDraft = (arg: any): arg is Draft => {
   //   if (!arg?.draftKey) {
@@ -30,21 +33,17 @@ const getDetailPost = async (contentId: string) => {
   //   ? { draftKey: preview.draftKey }
   //   : {}
 
-  // const post = await client.getListDetail<Post>({
-  //   endpoint: "blogs",
-  //   contentId,
-  //   // queries: draftKey,
+  const post = await getPostDetail(contentId)
+  // const res = await fetch(url, {
+  //   headers: {
+  //     "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
+  //   },
   // })
-  const res = await fetch(url, {
-    headers: {
-      "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
-    },
-  })
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch articles")
-  }
-  const post: Post = await res.json()
+  // if (!res.ok) {
+  //   throw new Error("Failed to fetch articles")
+  // }
+  // const post: Post = await res.json()
 
   let toc = Array<TocH2>() // 目次
   let h2Index = -1 // 見出し２インデックス
@@ -83,30 +82,32 @@ const getDetailPost = async (contentId: string) => {
     }
   }
 
-  return { post, toc }
+  return toc
 }
 
-type Data = {
-  contents: Post[]
-}
+// type Data = {
+//   contents: Post[]
+// }
 
 export const generateStaticParams = async () => {
-  const res = await fetch(
-    "https://finance-blog.microcms.io/api/v1/blogs?limit=999",
-    {
-      headers: {
-        "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
-      },
-    }
-  )
+  // const res = await fetch(
+  //   "https://finance-blog.microcms.io/api/v1/blogs?limit=999",
+  //   {
+  //     headers: {
+  //       "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
+  //     },
+  //   }
+  // )
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch data")
-  }
+  // if (!res.ok) {
+  //   throw new Error("Failed to fetch data")
+  // }
 
-  const { contents: posts }: Data = await res.json()
+  // const { contents: posts }: Data = await res.json()
 
-  const paths = posts.map((post) => {
+  const posts = await getPostList({ limit: 999 })
+
+  const paths = posts.contents.map((post) => {
     return {
       postId: post.id,
     }
@@ -119,22 +120,27 @@ type Props = {
   params: {
     postId: string
   }
+  // searchParams: {
+  //   draftKey: string
+  // }
 }
 
 export const generateMetadata = async ({
   params,
 }: Props): Promise<Metadata> => {
   const id = params.postId
-  const res = await fetch(
-    `https://finance-blog.microcms.io/api/v1/blogs/${id}`,
-    {
-      headers: {
-        "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
-      },
-    }
-  )
+  // const res = await fetch(
+  //   `https://finance-blog.microcms.io/api/v1/blogs/${id}`,
+  //   {
+  //     headers: {
+  //       "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
+  //     },
+  //   }
+  // )
 
-  const data: Post = await res.json()
+  // const data: Post = await res.json()
+
+  const data = await getPostDetail(id)
 
   return {
     title: data.title,
@@ -144,7 +150,8 @@ export const generateMetadata = async ({
 
 const PostPage = async ({ params }: Props) => {
   const id = params.postId
-  const { post, toc } = await getDetailPost(id)
+  const toc = await getToc(id)
+  const post = await getPostDetail(id)
 
   if (!post) {
     notFound()
@@ -203,7 +210,7 @@ const PostPage = async ({ params }: Props) => {
                   </time>
                 </span>
               </div>
-              <div className="mt-6">
+              <div className="my-8">
                 <Image
                   src={post.eyecatch?.url || "/no_image.jpg"}
                   alt={post.title}
@@ -212,47 +219,84 @@ const PostPage = async ({ params }: Props) => {
                   sizes="(max-width: 991px) 100vw, 75vw"
                 />
               </div>
-              <div className="mt-8">
-                <TableOfContents toc={toc} />
-                {post.body?.map((sec, index) =>
-                  sec.fieldId === "section" ? (
-                    <div key={index} className="rich-editor mt-4">
-                      {parse(sec.content)}
+              <div className="my-10">
+                {/* {post.intro ? parse(post.intro) : null} */}
+                {post.intro?.map((intro, index) =>
+                  intro.fieldId === "intro" ? (
+                    <div key={index} className="intro">
+                      {parse(intro.intro)}
                     </div>
-                  ) : sec.fieldId === "balloon" ? (
+                  ) : intro.fieldId === "balloon" ? (
                     <div
                       key={index}
                       className={`my-8 flex ${
-                        sec.isLeft ? "flex-row" : "flex-row-reverse"
+                        intro.isLeft ? "flex-row" : "flex-row-reverse"
                       }`}
                     >
                       <div className="w-[15%] min-w-[60px] max-w-[80px] text-center">
                         <div className="aspect-square overflow-hidden rounded-full border">
                           <Image
-                            src={sec.image?.url}
-                            alt={sec.name}
+                            src={intro.image?.url}
+                            alt={intro.name}
                             width={100}
                             height={100}
                             sizes="20vw"
                           />
                         </div>
                         <span className="text-sm text-gray-500">
-                          {sec.name}
+                          {intro.name}
                         </span>
                       </div>
                       <div
                         className={`${
-                          sec.isLeft
+                          intro.isLeft
                             ? "balloon-left ml-6"
                             : "balloon-right mr-6"
                         }  h-full max-w-[65%]`}
                       >
-                        <p className="tracking-wider">{sec.text}</p>
+                        <p className="tracking-wider">{intro.text}</p>
                       </div>
                     </div>
                   ) : null
                 )}
               </div>
+              <div className="my-10">
+                <TableOfContents toc={toc} />
+              </div>
+              {post.body?.map((sec, index) =>
+                sec.fieldId === "section" ? (
+                  <div key={index} className="rich-editor">
+                    {parse(sec.content)}
+                  </div>
+                ) : sec.fieldId === "balloon" ? (
+                  <div
+                    key={index}
+                    className={`my-8 flex ${
+                      sec.isLeft ? "flex-row" : "flex-row-reverse"
+                    }`}
+                  >
+                    <div className="w-[15%] min-w-[60px] max-w-[80px] text-center">
+                      <div className="aspect-square overflow-hidden rounded-full border">
+                        <Image
+                          src={sec.image?.url}
+                          alt={sec.name}
+                          width={100}
+                          height={100}
+                          sizes="20vw"
+                        />
+                      </div>
+                      <span className="text-sm text-gray-500">{sec.name}</span>
+                    </div>
+                    <div
+                      className={`${
+                        sec.isLeft ? "balloon-left ml-6" : "balloon-right mr-6"
+                      }  h-full max-w-[65%]`}
+                    >
+                      <p className="tracking-wider">{sec.text}</p>
+                    </div>
+                  </div>
+                ) : null
+              )}
             </div>
           </div>
           <div className="md:order-3 md:col-span-3">

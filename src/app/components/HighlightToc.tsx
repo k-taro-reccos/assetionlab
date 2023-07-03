@@ -28,7 +28,6 @@ export const HighlightToc: FC<Props> = ({ toc }) => {
       const basePosition = target[0].offsetTop - 1000
       const scrollPosition = window.scrollY
       setShowScrollToTop(basePosition <= scrollPosition)
-      console.log(basePosition, scrollPosition)
     }
 
     window.addEventListener("scroll", watchScroll)
@@ -62,7 +61,7 @@ export const HighlightToc: FC<Props> = ({ toc }) => {
           : "pointer-events-none opacity-0"
       }`}
     >
-      <ul className="list-inside space-y-3 px-6 py-4 font-semibold text-gray-400 marker:text-lg">
+      <ul className="list-inside space-y-3 px-6 py-4 font-semibold text-gray-400">
         {toc.map((h2, index) => (
           <li
             key={index}
