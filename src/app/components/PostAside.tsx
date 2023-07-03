@@ -1,28 +1,11 @@
-import { Category } from "types"
 import { Search } from "./Search"
 import Link from "next/link"
 import { HiFolder } from "react-icons/hi"
 import { ReactNode } from "react"
-
-type Data = {
-  contents: Category[]
-}
-
-const getCategories = async () => {
-  const res = await fetch(
-    `https://finance-blog.microcms.io/api/v1/categories`,
-    {
-      headers: {
-        "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
-      },
-    }
-  )
-  const data: Data = await res.json()
-  return data.contents
-}
+import { getCategoryList } from "libs/client"
 
 export const PostAside = async ({ children }: { children: ReactNode }) => {
-  const categories = await getCategories()
+  const {contents: categories} = await getCategoryList()
 
   return (
     <>

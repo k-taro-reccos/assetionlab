@@ -1,35 +1,11 @@
 import dayjs from "dayjs"
+import { getPostList } from "libs/client"
 import Image from "next/image"
 import Link from "next/link"
 import { MdQueryBuilder } from "react-icons/md"
-import { Post } from "types"
-
-type Data = {
-  contents: Post[]
-}
-
-const getPosts = async () => {
-  // const data = await client.getList<Post>({
-  //   endpoint: "blogs"
-  // })
-  const res = await fetch(
-    "https://finance-blog.microcms.io/api/v1/blogs?limit=999",
-    {
-      headers: {
-        "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
-      },
-    }
-  )
-  if (!res.ok) {
-    throw new Error("Failed to fetch data")
-  }
-  const data: Data = await res.json()
-
-  return data.contents
-}
 
 export const Articles = async () => {
-  const posts = await getPosts()
+  const { contents: posts } = await getPostList({ limit: 999 })
 
   return (
     <div className="grid grid-cols-1 gap-5 xs:grid-cols-2">

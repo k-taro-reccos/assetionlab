@@ -1,13 +1,10 @@
 // import { client } from "libs/client"
-import { Post } from "types"
 import Link from "next/link"
 import Image from "next/image"
 import { MdQueryBuilder } from "react-icons/md"
 import dayjs from "dayjs"
+import { getPostList } from "libs/client"
 
-type PostData = {
-  contents: Post[]
-}
 
 const getRelatedArticle = async (categoryId: string) => {
   // const data = await client.getList<Post>({
@@ -16,20 +13,25 @@ const getRelatedArticle = async (categoryId: string) => {
   //     filters: `category[equals]${categoryId}`,
   //   },
   // })
-  const res = await fetch(
-    `https://finance-blog.microcms.io/api/v1/blogs?limit=7&filters=category[equals]${categoryId}`,
-    {
-      headers: {
-        "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
-      },
-    }
-  )
-  if (!res.ok) {
-    throw new Error("Failed to fetch articles")
-  }
-  const data: PostData = await res.json()
+  // const res = await fetch(
+  //   `https://finance-blog.microcms.io/api/v1/blogs?limit=7&filters=category[equals]${categoryId}`,
+  //   {
+  //     headers: {
+  //       "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
+  //     },
+  //   }
+  // )
+  // if (!res.ok) {
+  //   throw new Error("Failed to fetch articles")
+  // }
+  // const data: PostData = await res.json()
 
-  return data.contents
+  const { contents: posts } = await getPostList({
+    limit: 6,
+    filters: `category[equals]${categoryId}`,
+  })
+
+  return posts
 }
 
 type Props = {

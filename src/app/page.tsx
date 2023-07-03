@@ -1,4 +1,3 @@
-// import { client } from "libs/client"
 import { Articles } from "./components/Articles"
 import { Aside } from "./components/Aside"
 import { CategoryList } from "./components/CategoryList"

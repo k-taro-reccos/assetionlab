@@ -3,32 +3,37 @@ import { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { HiChevronRight, HiHome } from "react-icons/hi"
-import { Category, Post } from "../../../../types"
 import Image from "next/image"
 import { MdQueryBuilder } from "react-icons/md"
 import dayjs from "dayjs"
+import { getCategoryDetail, getCategoryList, getPostList } from "libs/client"
 
 export const dynamicParams = false
 
-type PostData = {
-  contents: Post[]
-}
+// type PostData = {
+//   contents: Post[]
+// }
 
 const getPosts = async (id: string) => {
-  const res = await fetch(
-    `https://finance-blog.microcms.io/api/v1/blogs?limit=999&filters=category[equals]${id}`,
-    {
-      headers: {
-        "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
-      },
-    }
-  )
-  if (!res.ok) {
-    throw new Error("Failed to fetch articles")
-  }
-  const { contents: post }: PostData = await res.json()
+  // const res = await fetch(
+  //   `https://finance-blog.microcms.io/api/v1/blogs?limit=999&filters=category[equals]${id}`,
+  //   {
+  //     headers: {
+  //       "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
+  //     },
+  //   }
+  // )
+  // if (!res.ok) {
+  //   throw new Error("Failed to fetch articles")
+  // }
+  // const { contents: post }: PostData = await res.json()
 
-  return post
+  const posts = await getPostList({
+    limit: 999,
+    filters: `category[equals]${id}`,
+  })
+
+  return posts
 }
 
 type Props = {
@@ -41,39 +46,43 @@ export const generateMetadata = async ({
   params,
 }: Props): Promise<Metadata> => {
   const id = params.id
-  const res = await fetch(
-    `https://finance-blog.microcms.io/api/v1/categories/${id}`,
-    {
-      headers: {
-        "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
-      },
-    }
-  )
-  const data: Category = await res.json()
+  // const res = await fetch(
+  //   `https://finance-blog.microcms.io/api/v1/categories/${id}`,
+  //   {
+  //     headers: {
+  //       "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
+  //     },
+  //   }
+  // )
+  // const data: Category = await res.json()
+
+  const category = await getCategoryDetail(id)
 
   return {
-    title: data.name,
-    description: data.name
+    title: category.name,
+    description: category.name,
   }
 }
 
-type Data = {
-  contents: Category[]
-}
+// type Data = {
+//   contents: Category[]
+// }
 
 export const generateStaticParams = async () => {
-  const res = await fetch(
-    "https://finance-blog.microcms.io/api/v1/categories",
-    {
-      headers: {
-        "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
-      },
-    }
-  )
-  if (!res.ok) {
-    throw new Error("Failed to fetch articles")
-  }
-  const { contents: categories }: Data = await res.json()
+  // const res = await fetch(
+  //   "https://finance-blog.microcms.io/api/v1/categories",
+  //   {
+  //     headers: {
+  //       "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
+  //     },
+  //   }
+  // )
+  // if (!res.ok) {
+  //   throw new Error("Failed to fetch articles")
+  // }
+  // const { contents: categories }: Data = await res.json()
+
+  const { contents: categories } = await getCategoryList()
 
   const paths = categories.map((category) => {
     return {
@@ -85,7 +94,7 @@ export const generateStaticParams = async () => {
 
 const CategoryPage = async ({ params }: Props) => {
   const id = params.id
-  const posts = await getPosts(id)
+  const { contents: posts } = await getPosts(id)
 
   if (!posts || posts.length === 0) {
     notFound()

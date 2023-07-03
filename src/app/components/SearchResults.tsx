@@ -1,26 +1,25 @@
-import { Post } from "types"
 import Link from "next/link"
 import Image from "next/image"
 import { MdQueryBuilder } from "react-icons/md"
 import dayjs from "dayjs"
-
-type Data = {
-  contents: Post[]
-  totalCount: number
-  offset: number
-  limit: number
-}
+import { getPostList } from "libs/client"
 
 const search = async (params: string) => {
-  const res = await fetch(
-    `https://finance-blog.microcms.io/api/v1/blogs?limit=999&q=${params}&orders=-publishedAt`,
-    {
-      headers: {
-        "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
-      },
-    }
-  )
-  const data: Data = await res.json()
+  // const res = await fetch(
+  //   `https://finance-blog.microcms.io/api/v1/blogs?limit=999&q=${params}&orders=-publishedAt`,
+  //   {
+  //     headers: {
+  //       "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
+  //     },
+  //   }
+  // )
+  // const data: Data = await res.json()
+
+  const data = await getPostList({
+    limit: 999,
+    q: params,
+    orders: "-publishedAt",
+  })
   return data
 }
 

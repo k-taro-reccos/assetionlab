@@ -1,50 +1,30 @@
 import { Aside } from "@/app/components/Aside"
 import { Search } from "@/app/components/Search"
-// import Link from "next/link"
+import { getCategoryList } from "libs/client"
+import Link from "next/link"
 import React from "react"
 import { HiChevronRight, HiHome } from "react-icons/hi"
-import { Category } from "types"
-
-type Data = {
-  contents: Category[]
-}
-
-const getCategories = async () => {
-  const res = await fetch(
-    `https://finance-blog.microcms.io/api/v1/categories`,
-    {
-      headers: {
-        "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
-      },
-    }
-  )
-  if (!res.ok) {
-    throw new Error("Failed to fetch data")
-  }
-  const data: Data = await res.json()
-  return data.contents
-}
 
 const NotFound = async () => {
-  const categories = await getCategories()
-  
+  const { contents: categories } = await getCategoryList()
+
   return (
     <>
       <ul className="flex items-center space-x-1 py-4 text-sm text-gray-500">
         <li>
-          <a
+          <Link
             href="/"
-            // as="/"
+            as="/"
             className="flex items-center space-x-1 hover:underline"
-            // prefetch={false}
+            prefetch={false}
           >
             <HiHome className="h-4 w-4" />
             <span>ホーム</span>
-          </a>
+          </Link>
         </li>
         <li className="flex items-center space-x-1">
           <HiChevronRight className="h-5 w-5" />
-          <span>ページが見つかりませんでした。</span>
+          <span>記事が見つかりませんでした。</span>
         </li>
       </ul>
       <div className="md:flex">
@@ -74,14 +54,14 @@ const NotFound = async () => {
                   <ul className="mt-6 list-inside list-disc space-y-4 pl-4">
                     {categories.map((category) => (
                       <li key={category.id}>
-                        <a
+                        <Link
                           href={`/category/${category.id}`}
-                          // as={`/category/${category.id}`}
+                          as={`/category/${category.id}`}
                           className="text-gray-500 hover:underline"
-                          // prefetch={false}
+                          prefetch={false}
                         >
                           {category.name}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>

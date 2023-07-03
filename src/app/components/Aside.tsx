@@ -1,32 +1,15 @@
 import Link from "next/link"
 import { HiFolder } from "react-icons/hi"
-import { Category } from "types"
 import { Search } from "./Search"
 import Image from "next/image"
-
-type Data = {
-  contents: Category[]
-}
-
-const getCategories = async () => {
-  const res = await fetch(
-    `https://finance-blog.microcms.io/api/v1/categories`,
-    {
-      headers: {
-        "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
-      },
-    }
-  )
-  const data: Data = await res.json()
-  return data.contents
-}
+import { getCategoryList } from "libs/client"
 
 type Props = {
   topPage: boolean
 }
 
 export const Aside = async ({ topPage }: Props) => {
-  const categories = await getCategories()
+  const { contents: categories } = await getCategoryList()
 
   return (
     <div className="flex flex-col gap-6 md:h-full">
@@ -41,7 +24,8 @@ export const Aside = async ({ topPage }: Props) => {
           />
           <div className="text-center">コータロー</div>
           <p className="pt-2 leading-7">
-            お金についての情報を発信中。<br />
+            お金についての情報を発信中。
+            <br />
             資産運用や税金、保険などはむずかしい言葉が多くなかなか勉強、行動する気にならないという方に向けてわかりやすく解説しています。
           </p>
         </div>

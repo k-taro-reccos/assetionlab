@@ -1,31 +1,9 @@
+import { getCategoryList } from "libs/client"
 import Image from "next/image"
 import Link from "next/link"
-import { Category } from "types"
-
-type CategoryData = {
-  contents: Category[]
-}
-
-const getCategories = async () => {
-  const res = await fetch(
-    "https://finance-blog.microcms.io/api/v1/categories?limit=4",
-    {
-      headers: {
-        "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
-      },
-    }
-  )
-  if (!res.ok) {
-    throw new Error("Failed to fetch data")
-  }
-
-  const data: CategoryData = await res.json()
-
-  return data.contents
-}
 
 export const CategoryList = async () => {
-  const categories = await getCategories()
+  const { contents: categories } = await getCategoryList({ limit: 4 })
 
   return (
     <nav>
