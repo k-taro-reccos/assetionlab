@@ -90,21 +90,6 @@ const getToc = async (contentId: string) => {
 // }
 
 export const generateStaticParams = async () => {
-  // const res = await fetch(
-  //   "https://finance-blog.microcms.io/api/v1/blogs?limit=999",
-  //   {
-  //     headers: {
-  //       "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
-  //     },
-  //   }
-  // )
-
-  // if (!res.ok) {
-  //   throw new Error("Failed to fetch data")
-  // }
-
-  // const { contents: posts }: Data = await res.json()
-
   const posts = await getPostList({ limit: 999 })
 
   const paths = posts.contents.map((post) => {

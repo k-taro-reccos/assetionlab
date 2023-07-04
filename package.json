@@ -19,7 +19,7 @@
     "eslint": "8.38.0",
     "eslint-config-next": "^13.4.5",
     "html-react-parser": "^3.0.15",
-    "microcms-js-sdk": "^2.3.3",
+    "microcms-js-sdk": "^2.5.0",
     "next": "^13.4.5",
     "postcss": "8.4.21",
     "react": "^18.2.0",
