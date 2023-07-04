@@ -1,6 +1,6 @@
 import { MicroCMSQueries, createClient } from "microcms-js-sdk"
-import { notFound } from "next/navigation";
-import { Category, Post } from "types";
+import { notFound } from "next/navigation"
+import { Category, Post } from "types"
 
 if (!process.env.MICROCMS_DOMAIN) {
   throw new Error("MICROCMS_SERVICE_DOMAIN is required")
@@ -19,46 +19,69 @@ export const client = createClient({
 export const getPostList = async (queries?: MicroCMSQueries) => {
   const listData = await client
     .getList<Post>({
-      endpoint: 'blogs',
+      endpoint: "blogs",
       queries,
     })
-    .catch(notFound);
-  return listData;
-};
+    .catch(notFound)
+  return listData
+}
 
 // 記事詳細を取得
-export const getPostDetail = async (contentId: string, queries?: MicroCMSQueries) => {
+export const getPostDetail = async (
+  contentId: string,
+  queries?: MicroCMSQueries
+) => {
   const detailData = await client
     .getListDetail<Post>({
-      endpoint: 'blogs',
+      endpoint: "blogs",
       contentId,
       queries,
     })
-    .catch(notFound);
+    .catch(notFound)
 
-  return detailData;
-};
+  return detailData
+}
+
+// プレビューモードの記事詳細を取得
+export const getPostDraft = async (
+  contentId: string,
+  queries?: MicroCMSQueries
+) => {
+  const detailData = await client
+    .getListDetail<Post>({
+      endpoint: "blogs",
+      contentId,
+      queries,
+      customRequestInit: { cache: "no-store" },
+    })
+    .catch(notFound)
+
+  return detailData
+}
 
 // カテゴリー一覧を取得
 export const getCategoryList = async (queries?: MicroCMSQueries) => {
   const listData = await client
     .getList<Category>({
-      endpoint: 'categories',
+      endpoint: "categories",
       queries,
     })
-    .catch(notFound);
-  return listData;
-};
+    .catch(notFound)
+  return listData
+}
 
 // カテゴリー詳細を取得
-export const getCategoryDetail = async (contentId: string, queries?: MicroCMSQueries) => {
+export const getCategoryDetail = async (
+  contentId: string,
+  queries?: MicroCMSQueries
+) => {
   const detailData = await client
     .getListDetail<Category>({
-      endpoint: 'categories',
+      endpoint: "categories",
       contentId,
       queries,
     })
-    .catch(notFound);
+    .catch(notFound)
 
-  return detailData;
-};
+  return detailData
+}
