@@ -167,7 +167,6 @@ const PostPage = async ({ params, searchParams: { draftKey } }: Props) => {
                 />
               </div>
               <div className="my-10">
-                {/* {post.intro ? parse(post.intro) : null} */}
                 {post.intro?.map((intro, index) =>
                   intro.fieldId === "intro" ? (
                     <div key={index} className="intro">
