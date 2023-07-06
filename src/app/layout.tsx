@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     default: "資産形成ラボ",
   },
   description:
-    "お金についての情報を発信中。資産運用や税金、保険などはむずかしい言葉が多くなかなか勉強、行動する気にならないという方に向けてわかりやすく解説しています。",
+    "お金についての情報を発信中。NISAやiDeCo、税金などむずかしい言葉が多くなかなか勉強、行動する気にならないという方に向けてわかりやすく解説しています。",
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
