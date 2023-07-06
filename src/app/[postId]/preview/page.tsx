@@ -8,7 +8,7 @@ import { load } from "cheerio"
 import { notFound, redirect } from "next/navigation"
 import { Metadata } from "next"
 import { useTextLimit } from "@/hooks/useTextLimit"
-import { getPostDetail, getPostDraft } from "libs/client"
+import { getPostDraft } from "libs/client"
 import { TocH2, TocH3 } from "types"
 import { TableOfContents } from "@/app/components/TableOfContents"
 import { RelatedArticle } from "@/app/components/RelatedArticle"
@@ -16,9 +16,8 @@ import { PostAside } from "@/app/components/PostAside"
 import { HighlightToc } from "@/app/components/HighlightToc"
 import { Aside } from "@/app/components/Aside"
 
-const getToc = async (contentId: string) => {
-
-  const post = await getPostDetail(contentId)
+const getToc = async (contentId: string, draftKey: string) => {
+  const post = await getPostDraft(contentId, { draftKey })
   let toc = Array<TocH2>() // 目次
   let h2Index = -1 // 見出し２インデックス
 
@@ -83,8 +82,10 @@ export const generateMetadata = async ({
 
 const PostPage = async ({ params, searchParams: { draftKey } }: Props) => {
   const id = params.postId
-  const toc = await getToc(id)
+  const toc = await getToc(id, draftKey)
   const post = await getPostDraft(id, { draftKey })
+
+  console.log(draftKey)
 
   if (typeof draftKey !== "string" || draftKey === "") {
     redirect(`/${id}`)
