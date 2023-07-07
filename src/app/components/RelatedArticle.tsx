@@ -6,32 +6,10 @@ import dayjs from "dayjs"
 import { getPostList } from "libs/client"
 
 const getRelatedArticle = async (categoryId: string) => {
-  // const data = await client.getList<Post>({
-  //   endpoint: "blogs",
-  //   queries: {
-  //     filters: `category[equals]${categoryId}`,
-  //   },
-  // })
-  // const res = await fetch(
-  //   `https://finance-blog.microcms.io/api/v1/blogs?limit=7&filters=category[equals]${categoryId}`,
-  //   {
-  //     headers: {
-  //       "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
-  //     },
-  //   }
-  // )
-  // if (!res.ok) {
-  //   throw new Error("Failed to fetch articles")    
-  
-  // }
-  // const data: PostData = await res.json()
-
-  const { contents: posts } = await getPostList(
-    {
-      limit: 6,
-      filters: `category[equals]${categoryId}`,
-    },
-  )
+  const { contents: posts } = await getPostList({
+    limit: 6,
+    filters: `category[equals]${categoryId}`,
+  })
 
   return posts
 }
@@ -58,22 +36,18 @@ export const RelatedArticle = async ({ categoryId, postId }: Props) => {
                 <article className="relative" key={post.id}>
                   <Link
                     href={`/${post.id}`}
-                    as={`/${post.id}`}
                     className="flex h-full flex-col overflow-hidden rounded-lg border shadow-md transition hover:-translate-y-1 hover:shadow-lg"
-                    prefetch={false}
                   >
-                    <div className="relative aspect-[2/1]">
-                      <Image
-                        src={post.eyecatch?.url || "/no_image.jpg"}
-                        fill
-                        alt={post.title}
-                        priority
-                        className="h-auto w-full object-cover"
-                        sizes="(max-width: 575px) 100vw,
+                    <Image
+                      src={post.eyecatch?.url || "/no_image.jpg"}
+                      width={post.eyecatch.width}
+                      height={post.eyecatch.height}
+                      alt={post.title}
+                      className="h-auto w-full object-cover"
+                      sizes="(max-width: 575px) 100vw,
               (max-width: 991px) 50vw,
           40vw"
-                      />
-                    </div>
+                    />
                     <div className="flex flex-1 flex-col bg-white p-2">
                       <h2 className="line-clamp-3 flex-1 leading-6 tracking-widest">
                         {post.title}

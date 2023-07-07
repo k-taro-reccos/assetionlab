@@ -9,9 +9,7 @@ export const Header: FC = () => {
         <div className="flex h-full items-center justify-between sm:mx-3 md:justify-center">
           <Link
             href="/"
-            as="/"
             className="flex h-full items-center px-3 text-2xl font-bold tracking-wider text-gray-800 drop-shadow-[3px_3px_2px_rgba(96,165,250,1)] sm:px-5 md:text-3xl"
-            prefetch={false}
           >
             資産形成ラボ
           </Link>
