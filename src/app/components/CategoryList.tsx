@@ -12,8 +12,6 @@ export const CategoryList = async () => {
           <li className="relative" key={category.id}>
             <Link
               href={`/category/${category.id}`}
-              as={`/category/${category.id}`}
-              prefetch={false}
               className="block overflow-hidden rounded-lg shadow-md transition hover:-translate-y-1 hover:shadow-lg"
             >
               <span className="absolute left-2 top-2 z-10 rounded bg-white px-2 text-sm sm:text-xs md:text-sm">

@@ -14,9 +14,7 @@ const NotFound = async () => {
         <li>
           <Link
             href="/"
-            as="/"
             className="flex items-center space-x-1 hover:underline"
-            prefetch={false}
           >
             <HiHome className="h-4 w-4" />
             <span>ホーム</span>
@@ -56,9 +54,7 @@ const NotFound = async () => {
                       <li key={category.id}>
                         <Link
                           href={`/category/${category.id}`}
-                          as={`/category/${category.id}`}
                           className="text-gray-500 hover:underline"
-                          prefetch={false}
                         >
                           {category.name}
                         </Link>

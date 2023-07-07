@@ -8,26 +8,9 @@ import { MdQueryBuilder } from "react-icons/md"
 import dayjs from "dayjs"
 import { getCategoryDetail, getCategoryList, getPostList } from "libs/client"
 
-export const dynamicParams = false
-
-// type PostData = {
-//   contents: Post[]
-// }
+export const revalidate = 60
 
 const getPosts = async (id: string) => {
-  // const res = await fetch(
-  //   `https://finance-blog.microcms.io/api/v1/blogs?limit=999&filters=category[equals]${id}`,
-  //   {
-  //     headers: {
-  //       "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
-  //     },
-  //   }
-  // )
-  // if (!res.ok) {
-  //   throw new Error("Failed to fetch articles")
-  // }
-  // const { contents: post }: PostData = await res.json()
-
   const posts = await getPostList({
     limit: 999,
     filters: `category[equals]${id}`,
@@ -46,16 +29,6 @@ export const generateMetadata = async ({
   params,
 }: Props): Promise<Metadata> => {
   const id = params.id
-  // const res = await fetch(
-  //   `https://finance-blog.microcms.io/api/v1/categories/${id}`,
-  //   {
-  //     headers: {
-  //       "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
-  //     },
-  //   }
-  // )
-  // const data: Category = await res.json()
-
   const category = await getCategoryDetail(id)
 
   return {
@@ -64,24 +37,7 @@ export const generateMetadata = async ({
   }
 }
 
-// type Data = {
-//   contents: Category[]
-// }
-
 export const generateStaticParams = async () => {
-  // const res = await fetch(
-  //   "https://finance-blog.microcms.io/api/v1/categories",
-  //   {
-  //     headers: {
-  //       "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
-  //     },
-  //   }
-  // )
-  // if (!res.ok) {
-  //   throw new Error("Failed to fetch articles")
-  // }
-  // const { contents: categories }: Data = await res.json()
-
   const { contents: categories } = await getCategoryList()
 
   const paths = categories.map((category) => {
@@ -106,9 +62,7 @@ const CategoryPage = async ({ params }: Props) => {
         <li>
           <Link
             href="/"
-            as="/"
             className="flex items-center space-x-1 hover:underline"
-            prefetch={false}
           >
             <HiHome className="h-4 w-4" />
             <span>ホーム</span>
@@ -130,19 +84,17 @@ const CategoryPage = async ({ params }: Props) => {
               <article className="relative" key={post.id}>
                 <Link
                   href={`/${post.id}`}
-                  as={`/${post.id}`}
                   className="flex h-full flex-col overflow-hidden rounded-lg border shadow-md transition hover:-translate-y-1 hover:shadow-lg"
-                  prefetch={false}
                 >
-                  <div className="relative aspect-[2/1]">
-                    <span className="absolute left-2 top-2 z-10 rounded-full bg-primary-color px-2 py-[2px] text-sm text-white">
+                  <div className="relative">
+                    <span className="absolute left-2 top-2 z-10 rounded-full bg-blue-600 px-3 py-[2px] text-sm text-white">
                       {post.category.name}
                     </span>
                     <Image
                       src={post.eyecatch?.url || "/no_image.jpg"}
-                      fill
+                      width={post.eyecatch?.width}
+                      height={post.eyecatch?.height}
                       alt={post.title}
-                      priority
                       className="h-auto w-full object-cover"
                       sizes="(max-width: 575px) 100vw,
               (max-width: 991px) 50vw,
@@ -150,7 +102,7 @@ const CategoryPage = async ({ params }: Props) => {
                     />
                   </div>
                   <div className="flex-1 bg-white p-2 pb-10">
-                    <h2 className="line-clamp-3 leading-6 tracking-widest">
+                    <h2 className="line-clamp-2 leading-6 tracking-widest">
                       {post.title}
                     </h2>
                     <div className="absolute bottom-2 right-2 flex items-center">

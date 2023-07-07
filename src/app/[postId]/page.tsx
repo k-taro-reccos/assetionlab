@@ -16,34 +16,10 @@ import { PostAside } from "../components/PostAside"
 import { Aside } from "../components/Aside"
 import { getPostDetail, getPostList } from "libs/client"
 
-export const dynamicParams = false
+export const revalidate = 60
 
 const getToc = async (contentId: string) => {
-  // const url = draftKey
-  //   ? `https://finance-blog.microcms.io/api/v1/blogs/${contentId}?draftKey=${draftKey}`
-  //   : `https://finance-blog.microcms.io/api/v1/blogs/${contentId}`
-
-  // const isDraft = (arg: any): arg is Draft => {
-  //   if (!arg?.draftKey) {
-  //     return false
-  //   }
-  //   return typeof arg.draftKey === "string"
-  // }
-  // const draftKey = isDraft(preview)
-  //   ? { draftKey: preview.draftKey }
-  //   : {}
-
   const post = await getPostDetail(contentId)
-  // const res = await fetch(url, {
-  //   headers: {
-  //     "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
-  //   },
-  // })
-
-  // if (!res.ok) {
-  //   throw new Error("Failed to fetch articles")
-  // }
-  // const post: Post = await res.json()
 
   let toc = Array<TocH2>() // 目次
   let h2Index = -1 // 見出し２インデックス
@@ -85,10 +61,6 @@ const getToc = async (contentId: string) => {
   return toc
 }
 
-// type Data = {
-//   contents: Post[]
-// }
-
 export const generateStaticParams = async () => {
   const posts = await getPostList({ limit: 999 })
 
@@ -105,26 +77,12 @@ type Props = {
   params: {
     postId: string
   }
-  // searchParams: {
-  //   draftKey: string
-  // }
 }
 
 export const generateMetadata = async ({
   params,
 }: Props): Promise<Metadata> => {
   const id = params.postId
-  // const res = await fetch(
-  //   `https://finance-blog.microcms.io/api/v1/blogs/${id}`,
-  //   {
-  //     headers: {
-  //       "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
-  //     },
-  //   }
-  // )
-
-  // const data: Post = await res.json()
-
   const data = await getPostDetail(id)
 
   return {
@@ -151,9 +109,7 @@ const PostPage = async ({ params }: Props) => {
           <li>
             <Link
               href="/"
-              as="/"
               className="flex items-center space-x-1 hover:underline"
-              prefetch={false}
             >
               <HiHome className="h-4 w-4" />
               <span>ホーム</span>
@@ -163,9 +119,7 @@ const PostPage = async ({ params }: Props) => {
             <HiChevronRight className="h-5 w-5" />
             <Link
               href={`/category/${post.category.id}`}
-              as={`/category/${post.category.id}`}
               className="hover:underline"
-              prefetch={false}
             >
               {post.category.name}
             </Link>
@@ -205,7 +159,6 @@ const PostPage = async ({ params }: Props) => {
                 />
               </div>
               <div className="my-10">
-                {/* {post.intro ? parse(post.intro) : null} */}
                 {post.intro?.map((intro, index) =>
                   intro.fieldId === "intro" ? (
                     <div key={index} className="intro">

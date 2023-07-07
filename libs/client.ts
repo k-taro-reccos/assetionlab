@@ -16,11 +16,15 @@ export const client = createClient({
 })
 
 // 記事一覧を取得
-export const getPostList = async (queries?: MicroCMSQueries) => {
+export const getPostList = async (
+  queries?: MicroCMSQueries,
+  revalidate?: number
+) => {
   const listData = await client
     .getList<Post>({
       endpoint: "blogs",
       queries,
+      customRequestInit: { next: { revalidate } },
     })
     .catch(notFound)
   return listData

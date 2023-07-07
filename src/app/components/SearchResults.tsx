@@ -5,16 +5,6 @@ import dayjs from "dayjs"
 import { getPostList } from "libs/client"
 
 const search = async (params: string) => {
-  // const res = await fetch(
-  //   `https://finance-blog.microcms.io/api/v1/blogs?limit=999&q=${params}&orders=-publishedAt`,
-  //   {
-  //     headers: {
-  //       "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY as string,
-  //     },
-  //   }
-  // )
-  // const data: Data = await res.json()
-
   const data = await getPostList({
     limit: 999,
     q: params,
@@ -44,9 +34,7 @@ export const SearchResults = async ({ searchParams }: Props) => {
         <article className="relative" key={post.id}>
           <Link
             href={`/${post.id}`}
-            as={`/${post.id}`}
             className="flex h-full flex-col overflow-hidden rounded-lg border shadow-md transition hover:-translate-y-1 hover:shadow-lg"
-            prefetch={false}
           >
             <div className="relative aspect-[2/1]">
               <span className="absolute left-2 top-2 z-10 rounded-full bg-primary-color px-2 py-[2px] text-sm text-white">

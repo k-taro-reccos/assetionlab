@@ -29,9 +29,7 @@ const SearchPage = ({ searchParams }: Props) => {
         <li>
           <Link
             href="/"
-            as="/"
             className="flex items-center space-x-1 hover:underline"
-            prefetch={false}
           >
             <HiHome className="h-4 w-4" />
             <span>ホーム</span>
