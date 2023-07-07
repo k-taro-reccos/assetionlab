@@ -8,6 +8,7 @@ import { MdQueryBuilder } from "react-icons/md"
 import dayjs from "dayjs"
 import { getCategoryDetail, getCategoryList, getPostList } from "libs/client"
 
+export const revalidate = 60
 export const dynamicParams = false
 
 // type PostData = {

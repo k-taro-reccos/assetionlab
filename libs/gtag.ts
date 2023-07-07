@@ -16,7 +16,7 @@ export const event = ({
   action: string
   category: string
   label: string
-  value: string
+  value?: number
 }) => {
   if (!GA_MEASUREMENT_ID) return // GA_TRACKING_ID が設定されていない場合は、処理しない
   window.gtag("event", action, {

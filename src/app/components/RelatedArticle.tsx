@@ -5,7 +5,6 @@ import { MdQueryBuilder } from "react-icons/md"
 import dayjs from "dayjs"
 import { getPostList } from "libs/client"
 
-
 const getRelatedArticle = async (categoryId: string) => {
   // const data = await client.getList<Post>({
   //   endpoint: "blogs",
@@ -22,14 +21,17 @@ const getRelatedArticle = async (categoryId: string) => {
   //   }
   // )
   // if (!res.ok) {
-  //   throw new Error("Failed to fetch articles")
+  //   throw new Error("Failed to fetch articles")    
+  
   // }
   // const data: PostData = await res.json()
 
-  const { contents: posts } = await getPostList({
-    limit: 6,
-    filters: `category[equals]${categoryId}`,
-  })
+  const { contents: posts } = await getPostList(
+    {
+      limit: 6,
+      filters: `category[equals]${categoryId}`,
+    },
+  )
 
   return posts
 }

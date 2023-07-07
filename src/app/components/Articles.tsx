@@ -5,7 +5,7 @@ import Link from "next/link"
 import { MdQueryBuilder } from "react-icons/md"
 
 export const Articles = async () => {
-  const { contents: posts } = await getPostList({ limit: 999 })
+  const { contents: posts } = await getPostList({ limit: 999 }, 60)
 
   return (
     <div className="grid grid-cols-1 gap-5 xs:grid-cols-2">

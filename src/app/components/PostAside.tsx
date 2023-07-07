@@ -5,7 +5,7 @@ import { ReactNode } from "react"
 import { getCategoryList } from "libs/client"
 
 export const PostAside = async ({ children }: { children: ReactNode }) => {
-  const {contents: categories} = await getCategoryList()
+  const { contents: categories } = await getCategoryList()
 
   return (
     <>

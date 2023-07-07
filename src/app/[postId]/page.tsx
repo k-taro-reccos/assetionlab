@@ -16,6 +16,7 @@ import { PostAside } from "../components/PostAside"
 import { Aside } from "../components/Aside"
 import { getPostDetail, getPostList } from "libs/client"
 
+export const revalidate = 60
 export const dynamicParams = false
 
 const getToc = async (contentId: string) => {
