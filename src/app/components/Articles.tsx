@@ -15,7 +15,7 @@ export const Articles = async () => {
             href={`/${post.id}`}
             as={`/${post.id}`}
             className="flex h-full flex-col overflow-hidden rounded-lg border bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl"
-            prefetch={false}
+            // prefetch={false}
           >
             <div className="relative">
               <span className="absolute left-2 top-2 z-10 rounded-full bg-blue-600 px-3 py-[2px] text-sm text-white">

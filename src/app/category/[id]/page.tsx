@@ -136,7 +136,7 @@ const CategoryPage = async ({ params }: Props) => {
                   prefetch={false}
                 >
                   <div className="relative aspect-[2/1]">
-                    <span className="absolute left-2 top-2 z-10 rounded-full bg-primary-color px-2 py-[2px] text-sm text-white">
+                    <span className="absolute left-2 top-2 z-10 rounded-full bg-blue-600 px-3 py-[2px] text-sm text-white">
                       {post.category.name}
                     </span>
                     <Image
