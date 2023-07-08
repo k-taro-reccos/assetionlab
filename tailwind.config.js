@@ -38,6 +38,9 @@ module.exports = {
         800: "#1e40af",
         900: "#1e3a8a",
       },
+      cyan: {
+        400: "#22d3ee"
+      },
       emphasis: "#fef08a",
       white: "#fff",
       black: "#000",

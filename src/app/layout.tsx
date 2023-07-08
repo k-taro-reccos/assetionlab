@@ -29,7 +29,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <Wrapper>
           <Header />
-          <main className="container mx-auto mt-12 w-full max-w-7xl flex-1 px-3 sm:px-6 md:mt-14 md:px-8">
+          <main className="container mx-auto w-full max-w-7xl flex-1 px-3 sm:px-6 md:px-8">
             {children}
           </main>
           <Footer />

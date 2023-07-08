@@ -40,8 +40,8 @@ export const RelatedArticle = async ({ categoryId, postId }: Props) => {
                   >
                     <Image
                       src={post.eyecatch?.url || "/no_image.jpg"}
-                      width={post.eyecatch.width}
-                      height={post.eyecatch.height}
+                      width={post.eyecatch?.width}
+                      height={post.eyecatch?.height}
                       alt={post.title}
                       className="h-auto w-full object-cover"
                       sizes="(max-width: 575px) 100vw,

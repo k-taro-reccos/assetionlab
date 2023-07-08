@@ -5,7 +5,10 @@ import Link from "next/link"
 import { MdQueryBuilder } from "react-icons/md"
 
 export const Articles = async () => {
-  const { contents: posts } = await getPostList({ limit: 999 }, 60)
+  const { contents: posts } = await getPostList(
+    { limit: 999, orders: "-publishedAt" },
+    60
+  )
 
   return (
     <div className="grid grid-cols-1 gap-5 xs:grid-cols-2">
@@ -16,7 +19,7 @@ export const Articles = async () => {
             className="flex h-full flex-col overflow-hidden rounded-lg border bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl"
           >
             <div className="relative">
-              <span className="absolute left-2 top-2 z-10 rounded-full bg-blue-600 px-3 py-[2px] text-sm text-white">
+              <span className="absolute left-2 top-2 z-10 rounded-full bg-blue-600 px-3 py-[2px] text-sm tracking-wider text-white">
                 {post.category.name}
               </span>
               <Image

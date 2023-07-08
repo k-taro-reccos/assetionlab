@@ -30,7 +30,7 @@ export const Aside = async ({ topPage }: Props) => {
           </p>
         </div>
       )}
-      <div className="contents md:sticky md:top-[88px] md:order-2 md:flex md:flex-col md:gap-6">
+      <div className="contents md:sticky md:top-8 md:order-2 md:flex md:flex-col md:gap-6">
         <div className="order-1">
           <Search />
         </div>
