@@ -15,7 +15,7 @@
 .rich-editor {
   @apply prose-headings:pl-4 prose-h1:text-3xl prose-h2:mb-8 prose-h2:mt-12 prose-h2:scroll-mt-12 prose-h2:rounded prose-h2:border-l-4 prose-h2:border-primary-color prose-h2:bg-blue-100 prose-h2:py-3 prose-h2:text-2xl prose-h2:font-bold prose-h3:relative prose-h3:mb-6 prose-h3:mt-10 prose-h3:scroll-mt-12 prose-h3:py-1 prose-h3:text-xl prose-h3:font-semibold prose-h3:before:absolute prose-h3:before:left-0 prose-h3:before:top-0 prose-h3:before:h-full prose-h3:before:w-1 prose-h3:before:rounded prose-h3:before:bg-primary-color prose-h4:my-1 prose-h4:border-b-4 prose-h4:border-blue-100 prose-h4:py-1 prose-h4:text-lg prose-h4:font-medium prose-p:mb-10 prose-p:leading-7 prose-p:tracking-wider prose-a:text-primary-color prose-a:underline hover:prose-a:opacity-70 prose-blockquote:relative prose-blockquote:my-10 prose-blockquote:bg-gray-100 prose-blockquote:p-8 prose-blockquote:pt-12 prose-blockquote:before:absolute prose-blockquote:before:left-3 prose-blockquote:before:top-3 prose-blockquote:before:h-10 prose-blockquote:before:w-10 prose-blockquote:before:bg-[url("/quote_left.svg")] prose-blockquote:before:bg-no-repeat prose-blockquote:before:object-cover
   prose-ol:my-12 prose-ol:space-y-4 prose-ol:rounded prose-ol:bg-gray-100 prose-ol:p-6 prose-ol:tracking-wider prose-ul:my-12 prose-ul:list-disc prose-ul:space-y-4 prose-ul:rounded 
-  prose-ul:bg-gray-100 prose-ul:py-6 prose-ul:pl-12 prose-ul:pr-6 prose-ul:tracking-wider md:prose-h2:scroll-mt-14 md:prose-h3:scroll-mt-14;
+  prose-ul:bg-gray-100 prose-ul:py-6 prose-ul:pl-12 prose-ul:pr-6 prose-ul:tracking-wider md:prose-h2:scroll-mt-0 md:prose-h3:scroll-mt-0;
 }
 
 @layer components {
