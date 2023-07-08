@@ -39,7 +39,7 @@ export const CategoryList = async () => {
           >
             <Link
               href={`/category/${category.id}`}
-              className="flex h-full items-center justify-center text-white hover:bg-blue-600/20"
+              className="flex h-full items-center justify-center tracking-wider text-white hover:bg-blue-600/20"
             >
               {category.name}
             </Link>

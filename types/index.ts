@@ -47,7 +47,6 @@ export type Category = {
   publishedAt: string
   revisedAt: string
   name: string
-  image: MicroCMSImage
 }
 
 // 見出し３
