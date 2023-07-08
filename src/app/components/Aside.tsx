@@ -46,7 +46,7 @@ export const Aside = async ({ topPage }: Props) => {
               >
                 <Link
                   href={`/category/${category.id}`}
-                  className="flex items-center space-x-2 py-4 pl-4"
+                  className="flex items-center space-x-2 py-4 pl-4 tracking-wider"
                 >
                   <HiFolder className="h-5 w-5" />
                   <span>{category.name}</span>

@@ -54,7 +54,7 @@ const NotFound = async () => {
                       <li key={category.id}>
                         <Link
                           href={`/category/${category.id}`}
-                          className="text-gray-500 hover:underline"
+                          className="tracking-wider text-gray-500 hover:underline"
                         >
                           {category.name}
                         </Link>
