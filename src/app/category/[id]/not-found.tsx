@@ -41,7 +41,7 @@ const NotFound = async () => {
               <p className="mt-6">
                 以下よりキーワードを入力して検索してください。
               </p>
-              <div className="mt-6 border dark:border-none">
+              <div className="mt-6 rounded border dark:border-none">
                 <Search />
               </div>
               <div className="mt-12">
