@@ -61,13 +61,15 @@ export const HighlightToc: FC<Props> = ({ toc }) => {
           : "pointer-events-none opacity-0"
       }`}
     >
-      <ul className="list-inside space-y-3 px-6 py-4 font-semibold text-gray-400">
+      <ul className="list-inside space-y-3 px-6 py-4 font-semibold text-gray-400 dark:text-white">
         {toc.map((h2, index) => (
           <li
             key={index}
             ref={activeItem === h2.id ? observerRef : null}
             className={
-              activeItem === h2.id ? "text-primary-color opacity-100" : ""
+              activeItem === h2.id
+                ? "text-primary-color opacity-100 dark:text-blue-600"
+                : ""
             }
           >
             <a
