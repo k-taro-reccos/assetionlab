@@ -32,8 +32,8 @@ export const Search: FC<Props> = ({ header }) => {
         <>
           <Dialog.Root open={open} onOpenChange={() => setOpen(true)}>
             <Dialog.Trigger asChild>
-              <div className="flex h-full cursor-pointer items-center px-3 focus:outline-none sm:px-5">
-                <HiSearch className="h-7 w-7 text-gray-800" />
+              <div className="flex h-full cursor-pointer items-center focus:outline-none">
+                <HiSearch className="text-2xl text-gray-800 dark:text-white" />
               </div>
             </Dialog.Trigger>
             <Dialog.Portal>
@@ -63,17 +63,17 @@ export const Search: FC<Props> = ({ header }) => {
           </Dialog.Root>
         </>
       ) : (
-        <div className="relative z-10 rounded bg-white">
+        <div className="relative z-10 rounded">
           <form onSubmit={handleSubmit}>
             <input
               type="text"
-              className="w-full rounded p-4 focus:outline-none"
+              className="w-full rounded p-4 focus:outline-none dark:border dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-white"
               placeholder="検索"
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
             />
             <button type="submit">
-              <HiSearch className="absolute right-2 top-1/2 h-7 w-7 -translate-y-1/2 cursor-pointer" />
+              <HiSearch className="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer text-2xl dark:text-white" />
             </button>
           </form>
         </div>

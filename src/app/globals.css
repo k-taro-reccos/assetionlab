@@ -3,19 +3,19 @@
 @tailwind utilities;
 
 .section-title {
-  @apply relative text-2xl font-bold tracking-wider text-gray-500 before:absolute before:-left-20 before:top-1/2 before:h-[2px] before:w-14 before:-translate-y-1/2 before:bg-gray-500 after:absolute after:-right-20 after:top-1/2 after:h-[2px] after:w-14 after:-translate-y-1/2 after:bg-gray-500 before:sm:-left-28 before:sm:w-20 after:sm:-right-28 after:sm:w-20;
+  @apply relative text-2xl font-bold tracking-wider text-gray-500 before:absolute before:-left-20 before:top-1/2 before:h-[2px] before:w-14 before:-translate-y-1/2 before:bg-gray-500 after:absolute after:-right-20 after:top-1/2 after:h-[2px] after:w-14 after:-translate-y-1/2 after:bg-gray-500 dark:text-white dark:before:bg-white dark:after:bg-white before:sm:-left-28 before:sm:w-20 after:sm:-right-28 after:sm:w-20;
 }
 
 .intro {
   @apply marker:text-primary-color prose-p:mb-10 prose-p:leading-7 prose-p:tracking-wider
   prose-a:text-primary-color prose-a:underline hover:prose-a:opacity-70 prose-ul:relative prose-ul:list-disc prose-ul:space-y-3 prose-ul:rounded prose-ul:border-2
-  prose-ul:border-primary-color prose-ul:pb-6 prose-ul:pl-14 prose-ul:pr-6 prose-ul:pt-10 prose-ul:tracking-wider prose-ul:before:absolute  prose-ul:before:-top-4 prose-ul:before:left-6 prose-ul:before:rounded prose-ul:before:bg-primary-color prose-ul:before:px-3 prose-ul:before:py-1 prose-ul:before:text-white prose-ul:before:content-["この記事の結論！"] prose-ul:after:absolute prose-ul:after:left-10 prose-ul:after:top-4 prose-ul:after:z-10 prose-ul:after:border-l-[6px] prose-ul:after:border-r-[6px] prose-ul:after:border-t-[12px] prose-ul:after:border-transparent prose-ul:after:border-t-primary-color prose-li:font-bold prose-li:leading-7;
+  prose-ul:border-primary-color prose-ul:pb-6 prose-ul:pl-14 prose-ul:pr-6 prose-ul:pt-10 prose-ul:tracking-wider prose-ul:before:absolute  prose-ul:before:-top-4 prose-ul:before:left-6 prose-ul:before:rounded prose-ul:before:bg-primary-color prose-ul:before:px-3 prose-ul:before:py-1 prose-ul:before:text-white prose-ul:before:content-["この記事の結論！"] prose-ul:after:absolute prose-ul:after:left-10 prose-ul:after:top-4 prose-ul:after:z-10 prose-ul:after:border-l-[6px] prose-ul:after:border-r-[6px] prose-ul:after:border-t-[12px] prose-ul:after:border-transparent prose-ul:after:border-t-primary-color prose-li:font-bold prose-li:leading-7 dark:text-white dark:prose-ul:border-blue-600 dark:prose-ul:before:bg-blue-600 dark:prose-ul:after:border-t-blue-600 dark:prose-a:text-blue-600
 }
 
 .rich-editor {
   @apply prose-headings:pl-4 prose-h1:text-3xl prose-h2:mb-8 prose-h2:mt-12 prose-h2:scroll-mt-12 prose-h2:rounded prose-h2:border-l-4 prose-h2:border-primary-color prose-h2:bg-blue-100 prose-h2:py-3 prose-h2:text-2xl prose-h2:font-bold prose-h3:relative prose-h3:mb-6 prose-h3:mt-10 prose-h3:scroll-mt-12 prose-h3:py-1 prose-h3:text-xl prose-h3:font-semibold prose-h3:before:absolute prose-h3:before:left-0 prose-h3:before:top-0 prose-h3:before:h-full prose-h3:before:w-1 prose-h3:before:rounded prose-h3:before:bg-primary-color prose-h4:my-1 prose-h4:border-b-4 prose-h4:border-blue-100 prose-h4:py-1 prose-h4:text-lg prose-h4:font-medium prose-p:mb-10 prose-p:leading-7 prose-p:tracking-wider prose-a:text-primary-color prose-a:underline hover:prose-a:opacity-70 prose-blockquote:relative prose-blockquote:my-10 prose-blockquote:bg-gray-100 prose-blockquote:p-8 prose-blockquote:pt-12 prose-blockquote:before:absolute prose-blockquote:before:left-3 prose-blockquote:before:top-3 prose-blockquote:before:h-10 prose-blockquote:before:w-10 prose-blockquote:before:bg-[url("/quote_left.svg")] prose-blockquote:before:bg-no-repeat prose-blockquote:before:object-cover
   prose-ol:my-12 prose-ol:space-y-4 prose-ol:rounded prose-ol:bg-gray-100 prose-ol:p-6 prose-ol:tracking-wider prose-ul:my-12 prose-ul:list-disc prose-ul:space-y-4 prose-ul:rounded 
-  prose-ul:bg-gray-100 prose-ul:py-6 prose-ul:pl-12 prose-ul:pr-6 prose-ul:tracking-wider md:prose-h2:scroll-mt-0 md:prose-h3:scroll-mt-0;
+  prose-ul:bg-gray-100 prose-ul:py-6 prose-ul:pl-12 prose-ul:pr-6 prose-ul:tracking-wider md:prose-h2:scroll-mt-0 md:prose-h3:scroll-mt-0 dark:text-white dark:prose-h2:border-blue-800 dark:prose-h2:bg-blue-600 dark:prose-h3:before:bg-blue-600 dark:prose-h4:border-blue-600 dark:prose-a:text-blue-600 dark:prose-ul:bg-gray-600 dark:prose-ol:bg-gray-600 dark:prose-blockquote:bg-gray-600
 }
 
 @layer components {
@@ -23,24 +23,12 @@
     counter-reset: number;
   }
   .rich-editor > ol > li {
-    position: relative;
-    padding-left: 32px;
+    @apply relative pl-8
   }
   .rich-editor > ol > li::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: #60a5fa;
-    width: 24px;
-    height: 24px;
     counter-increment: number;
     content: counter(number);
-    border-radius: 50%;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
+    @apply bg-primary-color dark:bg-blue-600 absolute top-0 left-0 w-6 h-6 rounded-full text-white flex items-center justify-center text-sm
   }
   .rich-editor > blockquote > p {
     @apply mb-0;
@@ -48,7 +36,7 @@
 }
 
 .marker {
-  @apply font-bold underline decoration-emphasis decoration-8 underline-offset-[-4px];
+  @apply font-bold underline decoration-yellow-200 decoration-8 underline-offset-[-4px] dark:decoration-yellow-600
 }
 
 .source {
@@ -64,9 +52,9 @@
 } */
 
 .balloon-left {
-  @apply relative inline-block rounded-md border-2 border-gray-300 p-4 before:absolute before:-left-6 before:top-3 before:z-10 before:border-[12px] before:border-transparent before:border-r-gray-300 after:absolute after:-left-[21px] after:top-3 after:z-20 after:border-[12px] after:border-transparent after:border-r-white;
+  @apply relative inline-block rounded-md border-2 border-gray-300 p-4 before:absolute before:-left-6 before:top-3 before:z-10 before:border-[12px] before:border-transparent before:border-r-gray-300 after:absolute after:-left-[21px] after:top-3 after:z-20 after:border-[12px] after:border-transparent after:border-r-white dark:after:border-r-gray-700 dark:text-white
 }
 
 .balloon-right {
-  @apply relative inline-block rounded-md border-2 border-gray-300 p-4 before:absolute before:-right-6 before:top-3 before:z-10 before:border-[12px] before:border-transparent before:border-l-gray-300 after:absolute after:-right-[21px] after:top-3 after:z-20 after:border-[12px] after:border-transparent after:border-l-white;
+  @apply relative inline-block rounded-md border-2 border-gray-300 p-4 before:absolute before:-right-6 before:top-3 before:z-10 before:border-[12px] before:border-transparent before:border-l-gray-300 after:absolute after:-right-[21px] after:top-3 after:z-20 after:border-[12px] after:border-transparent after:border-l-white dark:after:border-l-gray-700 dark:text-white
 }

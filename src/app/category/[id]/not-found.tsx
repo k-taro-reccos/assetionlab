@@ -10,7 +10,7 @@ const NotFound = async () => {
 
   return (
     <>
-      <ul className="flex items-center space-x-1 py-4 text-sm text-gray-500">
+      <ul className="flex items-center space-x-1 py-4 text-sm text-gray-500 dark:text-white">
         <li>
           <Link
             href="/"
@@ -27,41 +27,39 @@ const NotFound = async () => {
       </ul>
       <div className="md:flex">
         <div className="md:flex-1">
-          <div>
-            <div className="rounded bg-white p-4">
-              <h1 className="mt-12 text-center text-3xl font-bold tracking-wider">
-                記事が見つかりませんでした。
-              </h1>
-              <p className="mt-12 text-center">
-                以下の方法からもう一度目的のページをお探しください。
+          <div className="rounded bg-white p-4 dark:border dark:border-gray-600 dark:bg-gray-700 dark:text-white">
+            <h1 className="mt-12 text-center text-3xl font-bold tracking-wider">
+              記事が見つかりませんでした。
+            </h1>
+            <p className="mt-12 text-center">
+              以下の方法からもう一度目的のページをお探しください。
+            </p>
+            <div className="mt-12">
+              <h2 className="rounded border-l-4 border-primary-color bg-blue-100 py-3 pl-4 text-xl font-bold dark:border-gray-800 dark:bg-gray-800">
+                1. 検索して見つける
+              </h2>
+              <p className="mt-6">
+                以下よりキーワードを入力して検索してください。
               </p>
+              <div className="mt-6 border dark:border-none">
+                <Search />
+              </div>
               <div className="mt-12">
-                <h2 className="rounded border-l-4 border-primary-color bg-blue-100 py-3 pl-4 text-xl font-bold">
-                  1. 検索して見つける
+                <h2 className="rounded border-l-4 border-primary-color bg-blue-100 py-3 pl-4 text-xl font-bold dark:border-gray-800 dark:bg-gray-800">
+                  2. カテゴリーから見つける
                 </h2>
-                <p className="mt-6">
-                  以下よりキーワードを入力して検索してください。
-                </p>
-                <div className="mt-6 border">
-                  <Search />
-                </div>
-                <div className="mt-12">
-                  <h2 className="rounded border-l-4 border-primary-color bg-blue-100 py-3 pl-4 text-xl font-bold">
-                    2. カテゴリーから見つける
-                  </h2>
-                  <ul className="mt-6 list-inside list-disc space-y-4 pl-4">
-                    {categories.map((category) => (
-                      <li key={category.id}>
-                        <Link
-                          href={`/category/${category.id}`}
-                          className="tracking-wider text-gray-500 hover:underline"
-                        >
-                          {category.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <ul className="mt-6 list-inside list-disc space-y-4 pl-4">
+                  {categories.map((category) => (
+                    <li key={category.id}>
+                      <Link
+                        href={`/category/${category.id}`}
+                        className="tracking-wider text-gray-500 hover:underline dark:text-white"
+                      >
+                        {category.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>

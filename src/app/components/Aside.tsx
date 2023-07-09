@@ -14,7 +14,7 @@ export const Aside = async ({ topPage }: Props) => {
   return (
     <div className="flex flex-col gap-6 md:h-full">
       {topPage && (
-        <div className="order-2 space-y-2 rounded bg-white p-4 md:order-1">
+        <div className="order-2 space-y-2 rounded bg-white p-4 dark:border dark:border-gray-600 dark:bg-gray-700 dark:text-white md:order-1">
           <Image
             src="/kotaro.png"
             width={100}
@@ -34,15 +34,15 @@ export const Aside = async ({ topPage }: Props) => {
         <div className="order-1">
           <Search />
         </div>
-        <div className="order-3 rounded bg-white p-4">
-          <h3 className="border-b-2 border-primary-color py-2 text-xl font-medium">
+        <div className="order-3 rounded bg-white p-4 dark:border dark:border-gray-600 dark:bg-gray-700">
+          <h3 className="border-b-2 border-primary-color py-2 text-xl font-medium dark:border-blue-700 dark:text-white">
             カテゴリー
           </h3>
           <ul>
             {categories.map((category) => (
               <li
                 key={category.id}
-                className="cursor-pointer border-b transition hover:bg-blue-50 hover:text-primary-color"
+                className="cursor-pointer border-b transition hover:bg-blue-50 hover:text-primary-color dark:border-gray-600 dark:text-white dark:hover:bg-blue-600"
               >
                 <Link
                   href={`/category/${category.id}`}

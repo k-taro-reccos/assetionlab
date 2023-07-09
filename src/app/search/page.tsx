@@ -25,7 +25,7 @@ export const generateMetadata = async ({
 const SearchPage = ({ searchParams }: Props) => {
   return (
     <>
-      <ul className="flex items-center space-x-1 py-3 text-sm tracking-wider text-gray-500">
+      <ul className="flex items-center space-x-1 py-3 text-sm tracking-wider text-gray-500 dark:text-white">
         <li>
           <Link
             href="/"
@@ -42,10 +42,10 @@ const SearchPage = ({ searchParams }: Props) => {
       </ul>
       <div className="mt-6 md:flex">
         <div className="md:flex-1">
-          <h1 className="text-center text-2xl font-bold tracking-wider">
+          <h1 className="text-center text-2xl font-bold tracking-wider dark:text-white">
             「{searchParams.q}」の検索結果
           </h1>
-          <hr className="mt-1 h-[2px] bg-gray-400" />
+          <hr className="mt-3 h-[2px] bg-gray-400 dark:bg-gray-600" />
           <div className="mt-6">
             <Suspense fallback={<Loading />}>
               {/* @ts-expect-error Server Component */}

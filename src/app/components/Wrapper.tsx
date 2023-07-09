@@ -44,7 +44,7 @@ export const Wrapper: FC<Props> = ({ children }) => {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-gray-100">
+    <>
       {children}
       <button
         type="button"
@@ -55,6 +55,6 @@ export const Wrapper: FC<Props> = ({ children }) => {
       >
         <HiChevronUp className="h-10 w-10 cursor-pointer rounded-full bg-gray-500 text-white shadow transition hover:opacity-70" />
       </button>
-    </div>
+    </>
   )
 }

@@ -110,7 +110,7 @@ const PostPage = async ({ params, searchParams: { draftKey } }: Props) => {
             </Link>
           </div>
         )}
-        <ul className="flex items-center space-x-1 py-4 text-sm tracking-wider text-gray-500">
+        <ul className="flex items-center space-x-1 py-4 text-sm tracking-wider text-gray-500 dark:text-white">
           <li>
             <Link
               href="/"
@@ -140,20 +140,20 @@ const PostPage = async ({ params, searchParams: { draftKey } }: Props) => {
         </ul>
         <div className="grid gap-y-12 md:grid-cols-4 md:gap-x-8">
           <div className="md:col-span-3">
-            <div className="rounded bg-white p-4 sm:p-6">
-              <h1 className="text-3xl font-bold tracking-wider">
+            <div className="rounded bg-white p-4 dark:border dark:border-gray-600 dark:bg-gray-700 sm:p-6">
+              <h1 className="text-3xl font-bold tracking-wider dark:text-white">
                 {post.title}
               </h1>
               <div className="mt-3 flex items-center space-x-2">
                 <span className="flex items-center">
-                  <MdQueryBuilder className="mt-[2px] text-gray-400" />
-                  <time className="ml-[2px] text-sm tracking-wider text-gray-400">
+                  <MdQueryBuilder className="mt-[2px] text-gray-400 dark:text-white" />
+                  <time className="ml-[2px] text-sm tracking-wider text-gray-400 dark:text-white">
                     {dayjs(post.publishedAt).format("YYYY/MM/DD")}
                   </time>
                 </span>
                 <span className="flex items-center">
-                  <MdRestore className="mt-[2px] text-lg text-gray-400" />
-                  <time className="ml-[2px] text-sm tracking-wider text-gray-400">
+                  <MdRestore className="mt-[2px] text-lg text-gray-400 dark:text-white" />
+                  <time className="ml-[2px] text-sm tracking-wider text-gray-400 dark:text-white">
                     {dayjs(post.updatedAt).format("YYYY/MM/DD")}
                   </time>
                 </span>
@@ -190,7 +190,7 @@ const PostPage = async ({ params, searchParams: { draftKey } }: Props) => {
                             sizes="20vw"
                           />
                         </div>
-                        <span className="text-sm text-gray-500">
+                        <span className="text-sm text-gray-500 dark:text-white">
                           {intro.name}
                         </span>
                       </div>
@@ -232,7 +232,7 @@ const PostPage = async ({ params, searchParams: { draftKey } }: Props) => {
                           sizes="20vw"
                         />
                       </div>
-                      <span className="text-sm text-gray-500">{sec.name}</span>
+                      <span className="text-sm text-gray-500 dark:text-white">{sec.name}</span>
                     </div>
                     <div
                       className={`${
