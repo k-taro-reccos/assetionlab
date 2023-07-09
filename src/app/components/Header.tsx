@@ -7,7 +7,7 @@ import { ToggleDarkMode } from "./ToggleDarkMode"
 export const Header: FC = () => {
   return (
     <>
-      <header className="fixed left-0 top-0 z-30 h-12 w-full bg-white dark:bg-gray-800 md:static md:h-14">
+      <header className="fixed left-0 top-0 z-30 h-12 w-full border-b bg-white dark:border-gray-700 dark:bg-gray-800 md:static md:h-14">
         <div className="mx-auto h-full max-w-7xl px-3 sm:px-6 md:px-8">
           <div className="flex h-full items-center justify-between">
             <Link
