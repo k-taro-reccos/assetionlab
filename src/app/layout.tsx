@@ -1,5 +1,5 @@
 import "./globals.css"
-import { Noto_Sans_JP } from "next/font/google"
+// import { Noto_Sans_JP } from "next/font/google"
 import { ReactNode } from "react"
 import { Metadata } from "next"
 import { Header } from "./components/Header"
@@ -7,9 +7,9 @@ import { Footer } from "./components/Footer"
 import { Wrapper } from "./components/Wrapper"
 import { Analytics } from "./components/GoogleAnalytics"
 
-const font = Noto_Sans_JP({
-  subsets: ["latin"],
-})
+// const font = Noto_Sans_JP({
+//   subsets: ["latin"],
+// })
 
 export const metadata: Metadata = {
   title: {
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="ja" className={font.className}>
+    <html lang="ja" >
       <head>
         <Analytics />
       </head>
