@@ -11,7 +11,7 @@ const search = async (params: string) => {
       q: params,
       orders: "-publishedAt",
     },
-    { next: { revalidate: 60 } }
+    { cache: "no-store" }
   )
   return data
 }
