@@ -9,7 +9,6 @@ import { Analytics } from "./components/GoogleAnalytics"
 
 const font = Noto_Sans_JP({
   subsets: ["latin"],
-  display: "optional"
 })
 
 export const metadata: Metadata = {
