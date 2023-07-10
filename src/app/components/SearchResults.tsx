@@ -5,11 +5,14 @@ import dayjs from "dayjs"
 import { getPostList } from "libs/client"
 
 const search = async (params: string) => {
-  const data = await getPostList({
-    limit: 999,
-    q: params,
-    orders: "-publishedAt",
-  })
+  const data = await getPostList(
+    {
+      limit: 999,
+      q: params,
+      orders: "-publishedAt",
+    },
+    { next: { revalidate: 60 } }
+  )
   return data
 }
 

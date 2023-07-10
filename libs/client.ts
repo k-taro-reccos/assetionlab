@@ -2,6 +2,21 @@ import { MicroCMSQueries, createClient } from "microcms-js-sdk"
 import { notFound } from "next/navigation"
 import { Category, Post } from "types"
 
+type RequestCache =
+  | "default"
+  | "force-cache"
+  | "no-cache"
+  | "no-store"
+  | "only-if-cached"
+  | "reload"
+
+type Options = {
+  next?: {
+    revalidate: number
+  }
+  cache?: RequestCache
+}
+
 if (!process.env.MICROCMS_DOMAIN) {
   throw new Error("MICROCMS_SERVICE_DOMAIN is required")
 }
@@ -18,13 +33,15 @@ export const client = createClient({
 // 記事一覧を取得
 export const getPostList = async (
   queries?: MicroCMSQueries,
-  revalidate?: number
+  // revalidate?: number,
+  // cacheOptions?: RequestCache 
+  options?: Options
 ) => {
   const listData = await client
     .getList<Post>({
       endpoint: "blogs",
       queries,
-      customRequestInit: { next: { revalidate } },
+      customRequestInit: options,
     })
     .catch(notFound)
   return listData

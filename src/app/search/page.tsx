@@ -19,6 +19,7 @@ export const generateMetadata = async ({
 }: Props): Promise<Metadata> => {
   return {
     title: `「${searchParams.q}」の検索結果`,
+    description: ""
   }
 }
 

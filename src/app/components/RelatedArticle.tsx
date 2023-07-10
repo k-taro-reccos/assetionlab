@@ -1,4 +1,3 @@
-// import { client } from "libs/client"
 import Link from "next/link"
 import Image from "next/image"
 import { MdQueryBuilder } from "react-icons/md"

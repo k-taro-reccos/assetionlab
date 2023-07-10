@@ -7,7 +7,7 @@ import { MdQueryBuilder } from "react-icons/md"
 export const Articles = async () => {
   const { contents: posts } = await getPostList(
     { limit: 999, orders: "-publishedAt" },
-    60
+    { next: { revalidate: 60 } }
   )
 
   return (

@@ -42,7 +42,7 @@ const NotFound = async () => {
                 <p className="mt-6">
                   以下よりキーワードを入力して検索してください。
                 </p>
-                <div className="mt-6 border">
+                <div className="mt-6 rounded border dark:border-none">
                   <Search />
                 </div>
                 <div className="mt-12">
@@ -54,7 +54,7 @@ const NotFound = async () => {
                       <li key={category.id}>
                         <Link
                           href={`/category/${category.id}`}
-                          className="text-gray-500 hover:underline dark:text-white"
+                          className="tracking-wider text-gray-500 hover:underline dark:text-white"
                         >
                           {category.name}
                         </Link>
