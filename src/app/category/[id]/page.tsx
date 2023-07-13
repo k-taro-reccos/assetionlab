@@ -81,7 +81,7 @@ const CategoryPage = async ({ params }: Props) => {
           <hr className="mt-3 h-[2px] bg-gray-400 dark:bg-gray-600" />
           <div className="mt-8 grid grid-cols-1 gap-4 xs:grid-cols-2">
             {posts.map((post) => (
-              <article className="relative" key={post.id}>
+              <article key={post.id}>
                 <Link
                   href={`/${post.id}`}
                   className="flex h-full flex-col overflow-hidden rounded-lg border bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl dark:border-gray-600 dark:bg-gray-700"
@@ -95,7 +95,6 @@ const CategoryPage = async ({ params }: Props) => {
                       width={post.eyecatch?.width}
                       height={post.eyecatch?.height}
                       alt={post.title}
-                      className="h-auto w-full object-cover"
                       sizes="(max-width: 575px) 100vw,
               (max-width: 991px) 50vw,
           40vw"

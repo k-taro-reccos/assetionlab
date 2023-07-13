@@ -32,10 +32,10 @@ export const RelatedArticle = async ({ categoryId, postId }: Props) => {
           <div className="mt-6 sm:mt-8">
             <div className="grid grid-cols-2 gap-4 xs:grid-cols-3">
               {posts.map((post) => (
-                <article className="relative" key={post.id}>
+                <article key={post.id}>
                   <Link
                     href={`/${post.id}`}
-                    className="flex h-full flex-col overflow-hidden rounded-lg border bg-white shadow-md transition hover:-translate-y-1 hover:shadow-lg dark:border-gray-600 dark:bg-gray-700 "
+                    className="flex h-full flex-col overflow-hidden rounded-lg border bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl dark:border-gray-500 dark:bg-gray-600"
                   >
                     <Image
                       src={post.eyecatch?.url || "/no_image.jpg"}
