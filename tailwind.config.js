@@ -41,11 +41,11 @@ module.exports = {
       },
       cyan: {
         400: "#22d3ee",
-        700: "#0e7490"
+        700: "#0e7490",
       },
       yellow: {
         200: "#fef08a",
-        600: "#ca8a04"
+        600: "#ca8a04",
       },
       white: "#fff",
       black: "#000",
