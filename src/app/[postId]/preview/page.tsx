@@ -84,8 +84,7 @@ const PostPage = async ({ params, searchParams: { draftKey } }: Props) => {
   const id = params.postId
   const toc = await getToc(id, draftKey)
   const post = await getPostDraft(id, { draftKey })
-
-  console.log(draftKey)
+  console.log(params, draftKey)
 
   if (typeof draftKey !== "string" || draftKey === "") {
     redirect(`/${id}`)
@@ -162,8 +161,8 @@ const PostPage = async ({ params, searchParams: { draftKey } }: Props) => {
                 <Image
                   src={post.eyecatch?.url || "/no_image.jpg"}
                   alt={post.title}
-                  width={post.eyecatch?.width}
-                  height={post.eyecatch?.height}
+                  width={post.eyecatch?.width || 1200}
+                  height={post.eyecatch?.height || 630}
                   sizes="(max-width: 991px) 100vw, 75vw"
                 />
               </div>
@@ -232,7 +231,9 @@ const PostPage = async ({ params, searchParams: { draftKey } }: Props) => {
                           sizes="20vw"
                         />
                       </div>
-                      <span className="text-sm text-gray-500 dark:text-white">{sec.name}</span>
+                      <span className="text-sm text-gray-500 dark:text-white">
+                        {sec.name}
+                      </span>
                     </div>
                     <div
                       className={`${
