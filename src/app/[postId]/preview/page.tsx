@@ -254,7 +254,7 @@ const PostPage = async ({ params, searchParams: { draftKey } }: Props) => {
           <aside className="md:order-2">
             {/* @ts-expect-error Server Component */}
             <PostAside>
-              <div className="hidden md:sticky md:top-2 md:mt-6 md:block">
+              <div className="hidden md:sticky md:top-10 md:mt-6 md:block">
                 <HighlightToc toc={toc} />
               </div>
             </PostAside>
