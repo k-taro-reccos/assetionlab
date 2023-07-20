@@ -131,7 +131,7 @@ const PostPage = async ({ params }: Props) => {
         </ul>
         <div className="grid gap-y-12 md:grid-cols-4 md:gap-x-8">
           <div className="md:col-span-3">
-            <div className="rounded bg-white p-4 dark:border dark:border-gray-600 dark:bg-gray-700 sm:p-6">
+            <div className="rounded bg-white p-4 dark:border dark:border-gray-600 dark:bg-gray-700 sm:p-6 md:p-8">
               <h1 className="text-3xl font-bold tracking-wider dark:text-white">
                 {post.title}
               </h1>
