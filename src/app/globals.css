@@ -36,7 +36,7 @@
 }
 
 .marker {
-  @apply font-bold underline decoration-yellow-200 decoration-8 underline-offset-[-4px] dark:decoration-yellow-600;
+  @apply bg-gradient-to-b from-transparent from-60% to-yellow-200 to-60% font-bold dark:from-60% dark:to-yellow-600 dark:to-60%;
 }
 
 .source {
