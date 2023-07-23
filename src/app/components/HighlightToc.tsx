@@ -64,7 +64,7 @@ export const HighlightToc: FC<Props> = ({ toc }) => {
       <span className="text-lg font-bold tracking-wider dark:text-white">
         目次
       </span>
-      <ol className="mt-2 list-decimal space-y-2 pl-8 font-semibold text-gray-400 dark:text-white">
+      <ol className="mt-2 list-decimal space-y-1 pl-8 text-sm font-semibold text-gray-400 dark:text-white">
         {toc.map((h2, index) => (
           <li
             key={index}
@@ -82,7 +82,7 @@ export const HighlightToc: FC<Props> = ({ toc }) => {
               {h2.text}
             </a>
             {h2.h3.length > 0 && (
-              <ul className="mt-2 space-y-2 pl-6 font-semibold text-gray-400 dark:text-white">
+              <ul className="mt-2 space-y-1 pl-6 font-semibold text-gray-400 dark:text-white">
                 {h2.h3.map((h3, index) => (
                   <li
                     key={index}
@@ -96,7 +96,7 @@ export const HighlightToc: FC<Props> = ({ toc }) => {
                   >
                     <a
                       href={`#${h3.id}`}
-                      className="cursor-pointer tracking-wider hover:text-gray-600 dark:hover:text-gray-400"
+                      className="cursor-pointer text-sm tracking-wider hover:text-gray-600 dark:hover:text-gray-400"
                     >
                       {h3.text}
                     </a>
