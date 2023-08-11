@@ -5,6 +5,7 @@ import { Aside } from "../components/Aside"
 import { SearchResults } from "../components/SearchResults"
 import { Suspense } from "react"
 import { Loading } from "../components/Loading"
+import { WindowTop } from "../components/WindowTop"
 
 export const runtime = "edge"
 
@@ -19,13 +20,13 @@ export const generateMetadata = async ({
 }: Props): Promise<Metadata> => {
   return {
     title: `「${searchParams.q}」の検索結果`,
-    description: ""
+    description: "",
   }
 }
 
 const SearchPage = ({ searchParams }: Props) => {
   return (
-    <>
+    <WindowTop>
       <ul className="flex items-center space-x-1 py-3 text-sm tracking-wider text-gray-500 dark:text-white">
         <li>
           <Link
@@ -59,7 +60,7 @@ const SearchPage = ({ searchParams }: Props) => {
           <Aside />
         </aside>
       </div>
-    </>
+    </WindowTop>
   )
 }
 
