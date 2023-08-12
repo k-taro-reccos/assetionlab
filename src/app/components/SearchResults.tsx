@@ -45,8 +45,8 @@ export const SearchResults = async ({ searchParams }: Props) => {
               </span>
               <Image
                 src={post.eyecatch?.url || "/no_image.jpg"}
-                width={post.eyecatch?.width}
-                height={post.eyecatch?.height}
+                width={post.eyecatch?.width || 1200}
+                height={post.eyecatch?.height || 630}
                 alt={post.title}
                 className="h-auto w-full object-cover"
                 sizes="(max-width: 575px) 100vw,

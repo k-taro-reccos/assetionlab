@@ -99,6 +99,8 @@ const PostPage = async ({ params }: Props) => {
   if (!post) {
     notFound()
   }
+  console.log(post);
+  
 
   const limitTitle = useTextLimit(post.title, 10)
 
@@ -145,7 +147,7 @@ const PostPage = async ({ params }: Props) => {
                 <span className="flex items-center">
                   <MdRestore className="mt-[2px] text-lg text-gray-400 dark:text-white" />
                   <time className="ml-[2px] text-sm tracking-wider text-gray-400 dark:text-white">
-                    {dayjs(post.updatedAt).format("YYYY/MM/DD")}
+                    {dayjs(post.revisedAt).format("YYYY/MM/DD")}
                   </time>
                 </span>
               </div>
@@ -153,8 +155,8 @@ const PostPage = async ({ params }: Props) => {
                 <Image
                   src={post.eyecatch?.url || "/no_image.jpg"}
                   alt={post.title}
-                  width={post.eyecatch?.width}
-                  height={post.eyecatch?.height}
+                  width={post.eyecatch?.width || 1200}
+                  height={post.eyecatch?.height || 630}
                   sizes="(max-width: 991px) 100vw, 75vw"
                 />
               </div>
