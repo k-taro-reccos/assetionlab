@@ -84,7 +84,6 @@ const PostPage = async ({ params, searchParams: { draftKey } }: Props) => {
   const id = params.postId
   const toc = await getToc(id, draftKey)
   const post = await getPostDraft(id, { draftKey })
-  console.log(params, draftKey)
 
   if (typeof draftKey !== "string" || draftKey === "") {
     redirect(`/${id}`)
