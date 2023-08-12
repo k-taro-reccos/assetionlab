@@ -24,7 +24,7 @@ export type Post = {
   createdAt: string
   updatedAt: string
   publishedAt: string
-  revisedat: string
+  revisedAt: string
   title: string
   description: string
   eyecatch: MicroCMSImage
