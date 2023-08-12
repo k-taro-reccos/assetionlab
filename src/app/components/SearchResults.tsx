@@ -48,7 +48,6 @@ export const SearchResults = async ({ searchParams }: Props) => {
                 width={post.eyecatch?.width || 1200}
                 height={post.eyecatch?.height || 630}
                 alt={post.title}
-                className="h-auto w-full object-cover"
                 sizes="(max-width: 575px) 100vw,
               (max-width: 991px) 50vw,
           40vw"
