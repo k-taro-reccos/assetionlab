@@ -30,7 +30,7 @@ export const RelatedArticle = async ({ categoryId, postId }: Props) => {
             <span className="section-title">関連記事</span>
           </div>
           <div className="mt-6 sm:mt-8">
-            <div className="grid grid-cols-2 gap-4 xs:grid-cols-3">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
               {posts.map((post) => (
                 <article key={post.id}>
                   <Link
@@ -42,10 +42,7 @@ export const RelatedArticle = async ({ categoryId, postId }: Props) => {
                       width={post.eyecatch?.width || 1200}
                       height={post.eyecatch?.height || 630}
                       alt={post.title}
-                      className="h-auto w-full object-cover"
-                      sizes="(max-width: 575px) 100vw,
-              (max-width: 991px) 50vw,
-          40vw"
+                      sizes="(max-width: 768px) 50vw, 33vw"
                     />
                     <div className="flex flex-1 flex-col p-2">
                       <h2 className="line-clamp-3 flex-1 leading-6 tracking-widest dark:text-white">

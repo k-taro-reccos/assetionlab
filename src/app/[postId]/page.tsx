@@ -99,8 +99,6 @@ const PostPage = async ({ params }: Props) => {
   if (!post) {
     notFound()
   }
-  console.log(post);
-  
 
   const limitTitle = useTextLimit(post.title, 10)
 
@@ -175,12 +173,12 @@ const PostPage = async ({ params }: Props) => {
                     >
                       <div className="w-[15%] min-w-[60px] max-w-[80px] text-center">
                         <div className="aspect-square overflow-hidden rounded-full border">
-                          <Image
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
                             src={intro.image?.url}
                             alt={intro.name}
                             width={100}
                             height={100}
-                            sizes="20vw"
                           />
                         </div>
                         <span className="text-sm text-gray-500 dark:text-white">
@@ -217,15 +215,17 @@ const PostPage = async ({ params }: Props) => {
                   >
                     <div className="w-[15%] min-w-[60px] max-w-[80px] text-center">
                       <div className="aspect-square overflow-hidden rounded-full border">
-                        <Image
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
                           src={sec.image?.url}
                           alt={sec.name}
                           width={100}
                           height={100}
-                          sizes="20vw"
                         />
                       </div>
-                      <span className="text-sm text-gray-500 dark:text-white">{sec.name}</span>
+                      <span className="text-sm text-gray-500 dark:text-white">
+                        {sec.name}
+                      </span>
                     </div>
                     <div
                       className={`${

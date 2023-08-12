@@ -1,6 +1,5 @@
 import Link from "next/link"
 import dayjs from "dayjs"
-import Image from "next/image"
 import parse from "html-react-parser"
 import { MdQueryBuilder, MdRestore } from "react-icons/md"
 import { HiChevronRight, HiHome } from "react-icons/hi"
@@ -112,7 +111,6 @@ const PostPage = async ({ params, searchParams: { draftKey } }: Props) => {
           <li>
             <Link
               href="/"
-              as="/"
               className="flex items-center space-x-1 hover:underline"
               prefetch={false}
             >
@@ -124,7 +122,6 @@ const PostPage = async ({ params, searchParams: { draftKey } }: Props) => {
             <HiChevronRight className="h-5 w-5" />
             <Link
               href={`/category/${post.category.id}`}
-              as={`/category/${post.category.id}`}
               className="hover:underline"
               prefetch={false}
             >
@@ -152,17 +149,17 @@ const PostPage = async ({ params, searchParams: { draftKey } }: Props) => {
                 <span className="flex items-center">
                   <MdRestore className="mt-[2px] text-lg text-gray-400 dark:text-white" />
                   <time className="ml-[2px] text-sm tracking-wider text-gray-400 dark:text-white">
-                    {dayjs(post.updatedAt).format("YYYY/MM/DD")}
+                    {dayjs(post.revisedAt).format("YYYY/MM/DD")}
                   </time>
                 </span>
               </div>
               <div className="my-8">
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src={post.eyecatch?.url || "/no_image.jpg"}
                   alt={post.title}
                   width={post.eyecatch?.width || 1200}
                   height={post.eyecatch?.height || 630}
-                  sizes="(max-width: 991px) 100vw, 75vw"
                 />
               </div>
               <div className="my-10">
@@ -180,12 +177,12 @@ const PostPage = async ({ params, searchParams: { draftKey } }: Props) => {
                     >
                       <div className="w-[15%] min-w-[60px] max-w-[80px] text-center">
                         <div className="aspect-square overflow-hidden rounded-full border">
-                          <Image
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
                             src={intro.image?.url}
                             alt={intro.name}
                             width={100}
                             height={100}
-                            sizes="20vw"
                           />
                         </div>
                         <span className="text-sm text-gray-500 dark:text-white">
@@ -222,12 +219,12 @@ const PostPage = async ({ params, searchParams: { draftKey } }: Props) => {
                   >
                     <div className="w-[15%] min-w-[60px] max-w-[80px] text-center">
                       <div className="aspect-square overflow-hidden rounded-full border">
-                        <Image
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
                           src={sec.image?.url}
                           alt={sec.name}
                           width={100}
                           height={100}
-                          sizes="20vw"
                         />
                       </div>
                       <span className="text-sm text-gray-500 dark:text-white">
