@@ -6,7 +6,7 @@ import { MdQueryBuilder } from "react-icons/md"
 
 export const Articles = async () => {
   const { contents: posts } = await getPostList(
-    { limit: 999, orders: "-publishedAt" },
+    { limit: 999 },
     { next: { revalidate: 60 } }
   )
 
@@ -24,8 +24,8 @@ export const Articles = async () => {
               </span>
               <Image
                 src={post.eyecatch?.url || "/no_image.jpg"}
-                width={post.eyecatch?.width}
-                height={post.eyecatch?.height}
+                width={post.eyecatch?.width || 1200}
+                height={post.eyecatch?.height || 630}
                 alt={post.title}
                 sizes="(max-width: 575px) 100vw,
               (max-width: 991px) 50vw,
