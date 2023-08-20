@@ -13,7 +13,8 @@ type RequestCache =
 
 type Options = {
   next?: {
-    revalidate: number
+    revalidate?: number
+    tags?: string[]
   }
   cache?: RequestCache
 }
@@ -35,8 +36,6 @@ export const client = createClient({
 export const getPostList = cache(
   async (
     queries?: MicroCMSQueries,
-    // revalidate?: number,
-    // cacheOptions?: RequestCache
     options?: Options
   ) => {
     const listData = await client
@@ -52,12 +51,13 @@ export const getPostList = cache(
 
 // 記事詳細を取得
 export const getPostDetail = cache(
-  async (contentId: string, queries?: MicroCMSQueries) => {
+  async (contentId: string, options?: Options, queries?: MicroCMSQueries) => {
     const detailData = await client
       .getListDetail<Post>({
         endpoint: "blogs",
         contentId,
         queries,
+        customRequestInit: options,
       })
       .catch(notFound)
 

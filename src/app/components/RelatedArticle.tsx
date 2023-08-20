@@ -5,10 +5,13 @@ import dayjs from "dayjs"
 import { getPostList } from "libs/client"
 
 const getRelatedArticle = async (categoryId: string) => {
-  const { contents: posts } = await getPostList({
-    limit: 6,
-    filters: `category[equals]${categoryId}`,
-  })
+  const { contents: posts } = await getPostList(
+    {
+      limit: 6,
+      filters: `category[equals]${categoryId}`,
+    },
+    { next: { tags: ["post"] } }
+  )
 
   return posts
 }

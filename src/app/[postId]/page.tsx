@@ -16,10 +16,8 @@ import { PostAside } from "../components/PostAside"
 import { Aside } from "../components/Aside"
 import { getPostDetail, getPostList } from "libs/client"
 
-// export const revalidate = 60
-
 const getToc = async (contentId: string) => {
-  const post = await getPostDetail(contentId)
+  const post = await getPostDetail(contentId, { next: { tags: ["post"] } })
 
   let toc = Array<TocH2>() // 目次
   let h2Index = -1 // 見出し２インデックス
