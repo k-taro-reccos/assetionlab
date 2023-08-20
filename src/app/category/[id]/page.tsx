@@ -8,13 +8,14 @@ import { MdQueryBuilder } from "react-icons/md"
 import dayjs from "dayjs"
 import { getCategoryDetail, getCategoryList, getPostList } from "libs/client"
 
-export const revalidate = 60
-
 const getPosts = async (id: string) => {
-  const posts = await getPostList({
-    limit: 999,
-    filters: `category[equals]${id}`,
-  })
+  const posts = await getPostList(
+    {
+      limit: 999,
+      filters: `category[equals]${id}`,
+    },
+    { next: { tags: ["post"] } }
+  )
 
   return posts
 }
