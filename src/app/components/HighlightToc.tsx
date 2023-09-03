@@ -82,7 +82,7 @@ export const HighlightToc: FC<Props> = ({ toc }) => {
               {h2.text}
             </a>
             {h2.h3.length > 0 && (
-              <ul className="mt-2 space-y-1 pl-6 font-semibold text-gray-400 dark:text-white">
+              <ul className="mt-2 space-y-1 pl-4 font-semibold text-gray-400 dark:text-white">
                 {h2.h3.map((h3, index) => (
                   <li
                     key={index}
