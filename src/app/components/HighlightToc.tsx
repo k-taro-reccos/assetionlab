@@ -22,8 +22,8 @@ export const HighlightToc: FC<Props> = ({ toc }) => {
       })
     }
 
-    const target = document.querySelectorAll("h2")
-    const target3 = document.querySelectorAll("h3")
+    const targetH2 = document.querySelectorAll("h2")
+    const targetH3 = document.querySelectorAll("h3")
 
     // const watchScroll = () => {
     //   const basePosition = target[0].offsetTop - 1000
@@ -39,13 +39,13 @@ export const HighlightToc: FC<Props> = ({ toc }) => {
       threshold: 0,
     }
     const obs = new IntersectionObserver(callback, options)
-    if (target) {
-      target.forEach((content) => {
+    if (targetH2) {
+      targetH2.forEach((content) => {
         obs.observe(content)
       })
     }
-    if (target3) {
-      target3.forEach((content) => {
+    if (targetH3) {
+      targetH3.forEach((content) => {
         obs.observe(content)
       })
     }
