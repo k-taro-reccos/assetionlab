@@ -49,7 +49,6 @@ export const Search: FC<Props> = ({ header }) => {
                   <input
                     type="text"
                     className="w-full rounded p-4 focus:outline-none"
-                    autoFocus
                     placeholder="検索"
                     value={searchHeaderText}
                     onChange={(e) => setSearchHeaderText(e.target.value)}
