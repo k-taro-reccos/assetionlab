@@ -16,7 +16,7 @@ export const Aside = async ({ topPage }: Props) => {
       {topPage && (
         <div className="order-2 space-y-2 rounded bg-white p-4 dark:border dark:border-gray-600 dark:bg-gray-700 dark:text-white md:order-1">
           <Image
-            src="/kotaro.png"
+            src="/kotaro.webp"
             width={100}
             height={100}
             alt="コータロー"
