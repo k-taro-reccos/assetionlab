@@ -156,7 +156,7 @@ const PostPage = async ({ params, searchParams: { draftKey } }: Props) => {
               <div className="my-8">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={post.eyecatch?.url || "/no_image.jpg"}
+                  src={post.eyecatch?.url || "/no_image.webp"}
                   alt={post.title}
                   width={post.eyecatch?.width || 1200}
                   height={post.eyecatch?.height || 630}
