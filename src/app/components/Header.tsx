@@ -12,7 +12,7 @@ export const Header: FC = () => {
           <div className="flex h-full items-center justify-between">
             <Link
               href="/"
-              className="flex h-full items-center text-2xl font-bold tracking-widest text-gray-800 drop-shadow-[3px_3px_2px_rgba(96,165,250,1)] dark:text-white dark:drop-shadow-[3px_3px_2px_rgba(17,24,39,1)] md:text-3xl"
+              className="flex h-full items-center text-2xl font-bold tracking-widest text-gray-800 drop-shadow-[3px_3px_2px_rgba(96,165,250,1)] dark:text-white dark:drop-shadow-[3px_3px_2px_rgba(37,99,235,1)] md:text-3xl"
             >
               資産形成ラボ
             </Link>
