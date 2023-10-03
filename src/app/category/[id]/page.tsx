@@ -92,7 +92,7 @@ const CategoryPage = async ({ params }: Props) => {
                       {post.category.name}
                     </span>
                     <Image
-                      src={post.eyecatch?.url || "/no_image.jpg"}
+                      src={post.eyecatch?.url || "/no_image.webp"}
                       width={post.eyecatch?.width || 1200}
                       height={post.eyecatch?.height || 630}
                       alt={post.title}

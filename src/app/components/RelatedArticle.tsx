@@ -41,7 +41,7 @@ export const RelatedArticle = async ({ categoryId, postId }: Props) => {
                     className="flex h-full flex-col overflow-hidden rounded-lg border bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl dark:border-gray-500 dark:bg-gray-600"
                   >
                     <Image
-                      src={post.eyecatch?.url || "/no_image.jpg"}
+                      src={post.eyecatch?.url || "/no_image.webp"}
                       width={post.eyecatch?.width || 1200}
                       height={post.eyecatch?.height || 630}
                       alt={post.title}

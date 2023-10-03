@@ -149,7 +149,7 @@ const PostPage = async ({ params }: Props) => {
               </div>
               <div className="my-8">
                 <Image
-                  src={post.eyecatch?.url || "/no_image.jpg"}
+                  src={post.eyecatch?.url || "/no_image.webp"}
                   alt={post.title}
                   width={post.eyecatch?.width || 1200}
                   height={post.eyecatch?.height || 630}
