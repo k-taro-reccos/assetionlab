@@ -190,7 +190,7 @@ const PostPage = async ({ params }: Props) => {
                             : "balloon-right mr-6"
                         }  h-full max-w-[65%]`}
                       >
-                        <div className="prose tracking-wider dark:prose-p:text-white">
+                        <div className="prose tracking-wider dark:prose-p:text-white dark:prose-strong:text-white">
                           {parse(intro.text)}
                         </div>
                       </div>
@@ -232,7 +232,7 @@ const PostPage = async ({ params }: Props) => {
                         sec.isLeft ? "balloon-left ml-6" : "balloon-right mr-6"
                       }  h-full max-w-[65%]`}
                     >
-                      <div className="prose tracking-wider dark:prose-p:text-white">
+                      <div className="prose tracking-wider dark:prose-p:text-white dark:prose-strong:text-white">
                         {parse(sec.text)}
                       </div>
                     </div>
