@@ -98,7 +98,7 @@ export const getCategoryDetail = cache(
         endpoint: "categories",
         contentId,
         queries,
-        // customRequestInit: { next: { tags: ["post"] } },
+        customRequestInit: { next: { tags: ["post"] } },
       })
       .catch(notFound)
 
