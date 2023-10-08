@@ -87,7 +87,7 @@ export const getCategoryList = async (queries?: MicroCMSQueries) => {
     .getList<Category>({
       endpoint: "categories",
       queries,
-      customRequestInit: { next: { tags: ["post"] } },
+      // customRequestInit: { next: { tags: ["post"] } },
     })
     .catch(notFound)
   return listData
@@ -103,7 +103,7 @@ export const getCategoryDetail = async (
       endpoint: "categories",
       contentId,
       queries,
-      customRequestInit: { next: { tags: ["post"] } },
+      // customRequestInit: { next: { tags: ["post"] } },
     })
     .catch(notFound)
 
