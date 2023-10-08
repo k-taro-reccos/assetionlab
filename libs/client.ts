@@ -34,10 +34,7 @@ export const client = createClient({
 
 // 記事一覧を取得
 export const getPostList = cache(
-  async (
-    queries?: MicroCMSQueries,
-    options?: Options
-  ) => {
+  async (queries?: MicroCMSQueries, options?: Options) => {
     const listData = await client
       .getList<Post>({
         endpoint: "blogs",
@@ -87,6 +84,7 @@ export const getCategoryList = cache(async (queries?: MicroCMSQueries) => {
     .getList<Category>({
       endpoint: "categories",
       queries,
+      customRequestInit: { next: { tags: ["post"] } },
     })
     .catch(notFound)
   return listData
@@ -100,6 +98,7 @@ export const getCategoryDetail = cache(
         endpoint: "categories",
         contentId,
         queries,
+        // customRequestInit: { next: { tags: ["post"] } },
       })
       .catch(notFound)
 
