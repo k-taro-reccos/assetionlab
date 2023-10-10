@@ -1,6 +1,8 @@
 import { Articles } from "./components/Articles"
 import { Aside } from "./components/Aside"
 
+export const revalidate = 60
+
 const Home = () => {
   return (
     <div className="mt-12 md:flex">
