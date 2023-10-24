@@ -82,12 +82,12 @@ export const getPostDraft = async (
 }
 
 // カテゴリー一覧を取得
-export const getCategoryList = async (queries?: MicroCMSQueries) => {
+export const getCategoryList = async (queries?: MicroCMSQueries, options?: Options) => {
   const listData = await client
     .getList<Category>({
       endpoint: "categories",
       queries,
-      // customRequestInit: { next: { tags: ["post"] } },
+      customRequestInit: options,
     })
     .catch(notFound)
   return listData
