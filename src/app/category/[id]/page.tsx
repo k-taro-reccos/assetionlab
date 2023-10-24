@@ -41,7 +41,9 @@ export const generateMetadata = async ({
 }
 
 export const generateStaticParams = async () => {
-  const { contents: categories } = await getCategoryList()
+  const { contents: categories } = await getCategoryList(undefined, {
+    next: { tags: ["post"] },
+  })
 
   const paths = categories.map((category) => {
     return {
