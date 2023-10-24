@@ -1,7 +1,7 @@
 import { Articles } from "./components/Articles"
 import { Aside } from "./components/Aside"
 
-export const revalidate = 60
+// export const revalidate = 60
 
 const Home = () => {
   return (
