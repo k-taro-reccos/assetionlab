@@ -27,6 +27,7 @@ export const Articles = async () => {
                 width={post.eyecatch?.width || 1200}
                 height={post.eyecatch?.height || 630}
                 alt={post.title}
+                priority
                 sizes="(max-width: 575px) 100vw,
               (max-width: 991px) 50vw,
           40vw"
