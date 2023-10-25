@@ -76,6 +76,7 @@ export const generateMetadata = async ({
   return {
     title: data.title,
     description: data.description,
+    robots: "noindex"
   }
 }
 
