@@ -16,7 +16,7 @@ import { PostAside } from "../components/PostAside"
 import { Aside } from "../components/Aside"
 import { getPostDetail, getPostList } from "libs/client"
 
-// export const revalidate = 60
+export const revalidate = 86400
 
 const getToc = async (contentId: string) => {
   const post = await getPostDetail(contentId, { next: { tags: ["post"] } })
