@@ -36,7 +36,7 @@ export const generateMetadata = async ({
 
   return {
     title: category.name,
-    description: category.name,
+    description: `「${category.name}」の記事一覧です。`,
   }
 }
 
