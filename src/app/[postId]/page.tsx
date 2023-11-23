@@ -104,6 +104,111 @@ const PostPage = async ({ params }: Props) => {
 
   const limitTitle = useTextLimit(post.title, 10)
 
+  const post_intro = post.intro?.map((intro, index) => {
+    if (intro.fieldId === "intro") {
+      return (
+        <div key={index} className="intro">
+          {parse(intro.intro)}
+        </div>
+      )
+    } else if (intro.fieldId === "balloon") {
+      return (
+        <div
+          key={index}
+          className={`my-8 flex ${
+            intro.isLeft ? "flex-row" : "flex-row-reverse"
+          }`}
+        >
+          <div className="w-[15%] min-w-[60px] max-w-[80px] text-center">
+            <div className="aspect-square overflow-hidden rounded-full border">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={intro.image?.url}
+                alt={intro.name}
+                width={100}
+                height={100}
+              />
+            </div>
+            <span className="text-sm text-gray-500 dark:text-white">
+              {intro.name}
+            </span>
+          </div>
+          <div
+            className={`${
+              intro.isLeft ? "balloon-left ml-6" : "balloon-right mr-6"
+            }  h-full max-w-[65%]`}
+          >
+            <div className="prose tracking-wider dark:prose-p:text-white dark:prose-strong:text-white">
+              {parse(intro.text)}
+            </div>
+          </div>
+        </div>
+      )
+    } else {
+      return null
+    }
+  })
+
+  const post_body = post.body?.map((sec, index) => {
+    if (sec.fieldId === "section") {
+      return (
+        <div key={index} className="rich-editor">
+          {parse(sec.content)}
+        </div>
+      )
+    } else if (sec.fieldId === "balloon") {
+      return (
+        <div
+          key={index}
+          className={`my-8 flex ${
+            sec.isLeft ? "flex-row" : "flex-row-reverse"
+          }`}
+        >
+          <div className="w-[15%] min-w-[60px] max-w-[80px] text-center">
+            <div className="aspect-square overflow-hidden rounded-full border">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={sec.image?.url}
+                alt={sec.name}
+                width={100}
+                height={100}
+              />
+            </div>
+            <span className="text-sm text-gray-500 dark:text-white">
+              {sec.name}
+            </span>
+          </div>
+          <div
+            className={`${
+              sec.isLeft ? "balloon-left ml-6" : "balloon-right mr-6"
+            }  h-full max-w-[65%]`}
+          >
+            <div className="prose tracking-wider dark:prose-p:text-white dark:prose-strong:text-white">
+              {parse(sec.text)}
+            </div>
+          </div>
+        </div>
+      )
+    } else if (sec.fieldId === "memo") {
+      return (
+        <div
+          key={index}
+          className="memo rounded bg-orange-100 p-4 dark:bg-orange-400"
+        >
+          <div className="flex items-center space-x-2">
+            <HiPencilSquare className="h-8 w-8 rounded-full bg-orange-400 p-1 text-white dark:bg-white dark:text-orange-400" />
+            <span className="text-xl font-bold tracking-wider text-orange-400 dark:text-white">
+              メモ
+            </span>
+          </div>
+          {parse(sec.memo)}
+        </div>
+      )
+    } else {
+      return null
+    }
+  })
+
   return (
     <>
       <div>
@@ -160,102 +265,11 @@ const PostPage = async ({ params }: Props) => {
                   sizes="(max-width: 991px) 100vw, 75vw"
                 />
               </div>
-              <div className="my-10">
-                {post.intro?.map((intro, index) =>
-                  intro.fieldId === "intro" ? (
-                    <div key={index} className="intro">
-                      {parse(intro.intro)}
-                    </div>
-                  ) : intro.fieldId === "balloon" ? (
-                    <div
-                      key={index}
-                      className={`my-8 flex ${
-                        intro.isLeft ? "flex-row" : "flex-row-reverse"
-                      }`}
-                    >
-                      <div className="w-[15%] min-w-[60px] max-w-[80px] text-center">
-                        <div className="aspect-square overflow-hidden rounded-full border">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={intro.image?.url}
-                            alt={intro.name}
-                            width={100}
-                            height={100}
-                          />
-                        </div>
-                        <span className="text-sm text-gray-500 dark:text-white">
-                          {intro.name}
-                        </span>
-                      </div>
-                      <div
-                        className={`${
-                          intro.isLeft
-                            ? "balloon-left ml-6"
-                            : "balloon-right mr-6"
-                        }  h-full max-w-[65%]`}
-                      >
-                        <div className="prose tracking-wider dark:prose-p:text-white dark:prose-strong:text-white">
-                          {parse(intro.text)}
-                        </div>
-                      </div>
-                    </div>
-                  ) : null
-                )}
-              </div>
+              <div className="my-10">{post_intro}</div>
               <div className="my-10">
                 <TableOfContents toc={toc} />
               </div>
-              {post.body?.map((sec, index) =>
-                sec.fieldId === "section" ? (
-                  <div key={index} className="rich-editor">
-                    {parse(sec.content)}
-                  </div>
-                ) : sec.fieldId === "balloon" ? (
-                  <div
-                    key={index}
-                    className={`my-8 flex ${
-                      sec.isLeft ? "flex-row" : "flex-row-reverse"
-                    }`}
-                  >
-                    <div className="w-[15%] min-w-[60px] max-w-[80px] text-center">
-                      <div className="aspect-square overflow-hidden rounded-full border">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={sec.image?.url}
-                          alt={sec.name}
-                          width={100}
-                          height={100}
-                        />
-                      </div>
-                      <span className="text-sm text-gray-500 dark:text-white">
-                        {sec.name}
-                      </span>
-                    </div>
-                    <div
-                      className={`${
-                        sec.isLeft ? "balloon-left ml-6" : "balloon-right mr-6"
-                      }  h-full max-w-[65%]`}
-                    >
-                      <div className="prose tracking-wider dark:prose-p:text-white dark:prose-strong:text-white">
-                        {parse(sec.text)}
-                      </div>
-                    </div>
-                  </div>
-                ) : sec.fieldId === "memo" ? (
-                  <div
-                    key={index}
-                    className="memo rounded bg-orange-100 p-4 dark:bg-orange-400"
-                  >
-                    <div className="flex items-center space-x-2">
-                      <HiPencilSquare className="h-8 w-8 rounded-full bg-orange-400 p-1 text-white dark:bg-white dark:text-orange-400" />
-                      <span className="text-xl font-bold tracking-wider text-orange-400 dark:text-white">
-                        メモ
-                      </span>
-                    </div>
-                    {parse(sec.memo)}
-                  </div>
-                ) : null
-              )}
+              {post_body}
             </div>
           </div>
           <div className="md:order-3 md:col-span-3">
