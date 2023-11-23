@@ -50,7 +50,7 @@
   @apply mt-3 block text-right text-sm text-gray-400;
 }
 
-.memo {
+.point {
   @apply prose-p:mt-2 prose-p:leading-7 prose-p:tracking-wider dark:text-white;
 }
 
