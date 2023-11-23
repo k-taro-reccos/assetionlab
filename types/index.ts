@@ -37,7 +37,7 @@ export type Post = {
     name: string
   }
   intro: (Intro | Balloon)[]
-  body: (Section | Balloon)[]
+  body: (Section | Balloon | Memo)[]
 }
 
 export type Category = {
@@ -60,4 +60,9 @@ export type TocH2 = {
   id: string
   text: string // 見出しテキスト
   h3: TocH3[] // 見出し３の配列
+}
+
+export type Memo = {
+  fieldId: "memo"
+  memo: string
 }
