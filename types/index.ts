@@ -1,24 +1,5 @@
 import { MicroCMSImage } from "microcms-js-sdk"
 
-export type Section = {
-  fieldId: "section"
-  content: string
-  title: string
-}
-
-export type Balloon = {
-  fieldId: "balloon"
-  name: string
-  image: MicroCMSImage
-  isLeft: boolean
-  text: string
-}
-
-export type Intro = {
-  fieldId: "intro"
-  intro: string
-}
-
 export type Post = {
   id: string
   createdAt: string
@@ -37,7 +18,7 @@ export type Post = {
     name: string
   }
   intro: (Intro | Balloon)[]
-  body: (Section | Balloon | Memo)[]
+  body: (Section | Balloon | Memo | Warning)[]
 }
 
 export type Category = {
@@ -62,7 +43,31 @@ export type TocH2 = {
   h3: TocH3[] // 見出し３の配列
 }
 
-export type Memo = {
+type Balloon = {
+  fieldId: "balloon"
+  name: string
+  image: MicroCMSImage
+  isLeft: boolean
+  text: string
+}
+
+type Intro = {
+  fieldId: "intro"
+  intro: string
+}
+
+type Section = {
+  fieldId: "section"
+  content: string
+  title: string
+}
+
+type Memo = {
   fieldId: "memo"
   memo: string
+}
+
+type Warning = {
+  fieldId: "warning"
+  warning: string
 }
