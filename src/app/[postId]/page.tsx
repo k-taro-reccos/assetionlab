@@ -17,6 +17,7 @@ import { Aside } from "../components/Aside"
 import { getPostDetail, getPostList } from "libs/client"
 
 import { HiPencilSquare } from "react-icons/hi2"
+import { BsExclamationLg } from "react-icons/bs"
 
 export const revalidate = 86400
 
@@ -193,7 +194,7 @@ const PostPage = async ({ params }: Props) => {
       return (
         <div
           key={index}
-          className="memo rounded bg-orange-100 p-4 dark:bg-orange-400"
+          className="point my-8 rounded bg-orange-100 p-4 dark:bg-orange-400"
         >
           <div className="flex items-center space-x-2">
             <HiPencilSquare className="h-8 w-8 rounded-full bg-orange-400 p-1 text-white dark:bg-white dark:text-orange-400" />
@@ -202,6 +203,21 @@ const PostPage = async ({ params }: Props) => {
             </span>
           </div>
           {parse(sec.memo)}
+        </div>
+      )
+    } else if (sec.fieldId === "warning") {
+      return (
+        <div
+          key={index}
+          className="point my-8 rounded bg-red-100 p-4 dark:bg-red-400"
+        >
+          <div className="flex items-center space-x-2">
+            <BsExclamationLg className="h-8 w-8 rounded-full bg-red-400 p-1 text-white dark:bg-white dark:text-red-400" />
+            <span className="text-xl font-bold tracking-wider text-red-400 dark:text-white">
+              注意
+            </span>
+          </div>
+          {parse(sec.warning)}
         </div>
       )
     } else {
@@ -265,7 +281,9 @@ const PostPage = async ({ params }: Props) => {
                   sizes="(max-width: 991px) 100vw, 75vw"
                 />
               </div>
-              <div className="my-10">{post_intro}</div>
+              {post_intro.length > 0 && (
+                <div className="my-10">{post_intro}</div>
+              )}
               <div className="my-10">
                 <TableOfContents toc={toc} />
               </div>
