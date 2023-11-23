@@ -16,6 +16,8 @@ import { PostAside } from "../components/PostAside"
 import { Aside } from "../components/Aside"
 import { getPostDetail, getPostList } from "libs/client"
 
+import { HiPencilSquare } from "react-icons/hi2"
+
 export const revalidate = 86400
 
 const getToc = async (contentId: string) => {
@@ -238,6 +240,19 @@ const PostPage = async ({ params }: Props) => {
                         {parse(sec.text)}
                       </div>
                     </div>
+                  </div>
+                ) : sec.fieldId === "memo" ? (
+                  <div
+                    key={index}
+                    className="memo rounded bg-orange-100 p-4 dark:bg-orange-400"
+                  >
+                    <div className="flex items-center space-x-2">
+                      <HiPencilSquare className="h-8 w-8 rounded-full bg-orange-400 p-1 text-white dark:bg-white dark:text-orange-400" />
+                      <span className="text-xl font-bold tracking-wider text-orange-400 dark:text-white">
+                        メモ
+                      </span>
+                    </div>
+                    {parse(sec.memo)}
                   </div>
                 ) : null
               )}
