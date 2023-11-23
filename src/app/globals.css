@@ -15,8 +15,8 @@
 .rich-editor {
   @apply prose-headings:pl-4 prose-h1:text-3xl prose-h2:mb-8 prose-h2:mt-12 prose-h2:scroll-mt-12 prose-h2:rounded prose-h2:border-l-4 prose-h2:border-primary-color prose-h2:bg-blue-100 prose-h2:py-3 prose-h2:text-2xl prose-h2:font-bold prose-h3:relative prose-h3:mb-6 prose-h3:mt-10 prose-h3:scroll-mt-12 prose-h3:py-1 prose-h3:text-xl prose-h3:font-semibold prose-h3:before:absolute prose-h3:before:left-0 prose-h3:before:top-0 prose-h3:before:h-full prose-h3:before:w-1 prose-h3:before:rounded prose-h3:before:bg-primary-color prose-h4:mb-6 prose-h4:mt-10 prose-h4:border-b-4 prose-h4:border-blue-100 prose-h4:py-1 prose-h4:text-lg prose-h4:font-medium prose-p:mb-8 prose-p:leading-7 prose-p:tracking-wider prose-a:text-primary-color prose-a:underline hover:prose-a:opacity-70 prose-blockquote:relative prose-blockquote:my-8 prose-blockquote:bg-gray-100 prose-blockquote:p-8 prose-blockquote:pt-12 prose-blockquote:before:absolute prose-blockquote:before:left-3 prose-blockquote:before:top-3 prose-blockquote:before:h-10 prose-blockquote:before:w-10 prose-blockquote:before:bg-[url("/quote_left.svg")]
   prose-blockquote:before:bg-no-repeat prose-blockquote:before:object-cover prose-ol:my-8 prose-ol:space-y-4 prose-ol:rounded prose-ol:bg-gray-100 prose-ol:p-6 prose-ol:tracking-wider prose-ul:my-8 prose-ul:list-disc 
-  prose-ul:space-y-4 prose-ul:rounded prose-ul:bg-gray-100 prose-ul:py-6 prose-ul:pl-12 prose-ul:pr-6 prose-ul:tracking-wider dark:text-white dark:prose-h2:border-blue-800 dark:prose-h2:bg-blue-600 dark:prose-h3:before:bg-blue-600 dark:prose-h4:border-blue-600 dark:prose-a:text-blue-600 dark:prose-blockquote:bg-gray-600 dark:prose-ol:bg-gray-600 dark:prose-ul:bg-gray-600 md:prose-h2:scroll-mt-0 md:prose-h3:scroll-mt-0 
-  prose-th:bg-primary-color prose-th:p-4 prose-td:bg-gray-200 prose-td:p-4 prose-th:border prose-th:border-white prose-td:border prose-td:border-white prose-th:text-white prose-table:block prose-table:overflow-x-scroll dark:prose-th:bg-blue-600 dark:prose-td:bg-gray-600
+  prose-ul:space-y-4 prose-ul:rounded prose-ul:bg-gray-100 prose-ul:py-6 prose-ul:pl-12 prose-ul:pr-6 prose-ul:tracking-wider prose-table:my-8 prose-table:block prose-table:overflow-x-scroll prose-th:border prose-th:border-white prose-th:bg-primary-color prose-th:p-4 prose-th:text-white prose-td:border prose-td:border-white prose-td:bg-gray-200 
+  prose-td:p-4 dark:text-white dark:prose-h2:border-blue-800 dark:prose-h2:bg-blue-600 dark:prose-h3:before:bg-blue-600 dark:prose-h4:border-blue-600 dark:prose-a:text-blue-600 dark:prose-blockquote:bg-gray-600 dark:prose-ol:bg-gray-600 dark:prose-ul:bg-gray-600 dark:prose-th:bg-blue-600 dark:prose-td:bg-gray-600 md:prose-h2:scroll-mt-0 md:prose-h3:scroll-mt-0;
 }
 
 @layer components {
@@ -35,10 +35,10 @@
     @apply mb-0;
   }
   .rich-editor > table p {
-    @apply mb-0
+    @apply mb-0;
   }
   .rich-editor > table > tbody {
-    @apply table w-full min-w-[500px] table-fixed
+    @apply table w-full min-w-[500px] table-fixed;
   }
 }
 
@@ -48,6 +48,10 @@
 
 .source {
   @apply mt-3 block text-right text-sm text-gray-400;
+}
+
+.memo {
+  @apply relative block rounded bg-orange-100 px-4 pb-4 pt-14 before:absolute before:left-4 before:top-4 before:h-8 before:w-8 before:rounded-full before:bg-[url("/memo_icon.svg")] before:bg-no-repeat before:object-cover after:absolute after:left-14 after:top-4 after:text-xl after:font-bold after:text-orange-400 after:content-["メモ"] dark:bg-orange-400 dark:after:text-white;
 }
 
 /* .balloon-left {
