@@ -51,16 +51,8 @@
 }
 
 .memo {
-  @apply relative block rounded bg-orange-100 px-4 pb-4 pt-14 before:absolute before:left-4 before:top-4 before:h-8 before:w-8 before:rounded-full before:bg-[url("/memo_icon.svg")] before:bg-no-repeat before:object-cover after:absolute after:left-14 after:top-4 after:text-xl after:font-bold after:text-orange-400 after:content-["メモ"] dark:bg-orange-400 dark:after:text-white;
+  @apply prose-p:mt-2 prose-p:leading-7 prose-p:tracking-wider dark:text-white;
 }
-
-/* .balloon-left {
-  @apply relative inline-block rounded-md border-2 border-primary-color bg-blue-50 p-4 before:absolute before:-left-6 before:top-2 before:z-10 before:border-[12px] before:border-transparent before:border-r-primary-color after:absolute after:-left-[21px] after:top-2 after:z-20 after:border-[12px] after:border-transparent after:border-r-blue-50;
-} */
-
-/* .balloon-right {
-  @apply relative inline-block rounded-md border-2 border-primary-color bg-blue-50 p-4 before:absolute before:-right-6 before:top-2 before:z-10 before:border-[12px] before:border-transparent before:border-l-primary-color after:absolute after:-right-[21px] after:top-2 after:z-20 after:border-[12px] after:border-transparent after:border-l-blue-50;
-} */
 
 .balloon-left {
   @apply relative inline-block rounded-md border-2 border-gray-300 p-4 before:absolute before:-left-6 before:top-3 before:z-10 before:border-[12px] before:border-transparent before:border-r-gray-300 after:absolute after:-left-[21px] after:top-3 after:z-20 after:border-[12px] after:border-transparent after:border-r-white dark:text-white dark:after:border-r-gray-700;
