@@ -20,24 +20,24 @@
 }
 
 @layer components {
-  .rich-editor > ol {
+  .rich-editor ol {
     counter-reset: number;
   }
-  .rich-editor > ol > li {
+  .rich-editor ol li {
     @apply relative pl-8;
   }
-  .rich-editor > ol > li::before {
+  .rich-editor ol li::before {
     counter-increment: number;
     content: counter(number);
     @apply absolute left-0 top-0 flex h-6 w-6 items-center justify-center rounded-full bg-primary-color text-sm text-white dark:bg-blue-600;
   }
-  .rich-editor > blockquote > p {
+  .rich-editor blockquote p {
     @apply mb-0;
   }
-  .rich-editor > table p {
+  .rich-editor table p {
     @apply mb-0;
   }
-  .rich-editor > table > tbody {
+  .rich-editor table tbody {
     @apply table w-full min-w-[500px] table-fixed;
   }
 }
