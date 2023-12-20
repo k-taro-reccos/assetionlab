@@ -144,11 +144,7 @@ const PostPage = async ({ params, searchParams: { draftKey } }: Props) => {
 
   const post_body = post.body?.map((sec, index) => {
     if (sec.fieldId === "section") {
-      return (
-        <div key={index} className="rich-editor">
-          {parse(sec.content)}
-        </div>
-      )
+      return <div key={index}>{parse(sec.content)}</div>
     } else if (sec.fieldId === "balloon") {
       return (
         <div
@@ -291,7 +287,7 @@ const PostPage = async ({ params, searchParams: { draftKey } }: Props) => {
               <div className="my-10">
                 <TableOfContents toc={toc} />
               </div>
-              {post_body}
+              <div className="rich-editor">{post_body}</div>
             </div>
           </div>
           <div className="md:order-3 md:col-span-3">
