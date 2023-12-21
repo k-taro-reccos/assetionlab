@@ -194,10 +194,10 @@ const PostPage = async ({ params }: Props) => {
       return (
         <div
           key={index}
-          className="point my-8 rounded bg-orange-100 p-4 dark:bg-orange-400"
+          className="point my-8 rounded bg-orange-100 p-4 dark:bg-orange-600"
         >
           <div className="flex items-center space-x-2">
-            <HiPencilSquare className="h-8 w-8 rounded-full bg-orange-400 p-1 text-white dark:bg-white dark:text-orange-400" />
+            <HiPencilSquare className="h-8 w-8 rounded-full bg-orange-400 p-1 text-white dark:bg-white dark:text-orange-600" />
             <span className="text-xl font-bold tracking-wider text-orange-400 dark:text-white">
               メモ
             </span>
@@ -209,10 +209,10 @@ const PostPage = async ({ params }: Props) => {
       return (
         <div
           key={index}
-          className="point my-8 rounded bg-red-100 p-4 dark:bg-red-400"
+          className="point my-8 rounded bg-red-100 p-4 dark:bg-red-600"
         >
           <div className="flex items-center space-x-2">
-            <BsExclamationLg className="h-8 w-8 rounded-full bg-red-400 p-1 text-white dark:bg-white dark:text-red-400" />
+            <BsExclamationLg className="h-8 w-8 rounded-full bg-red-400 p-1 text-white dark:bg-white dark:text-red-600" />
             <span className="text-xl font-bold tracking-wider text-red-400 dark:text-white">
               注意
             </span>
