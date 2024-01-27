@@ -40,6 +40,12 @@
   .rich-editor table tbody {
     @apply table w-full min-w-[500px] table-fixed;
   }
+  .balloon-right,
+  .balloon-left {
+    p {
+      @apply mb-0;
+    }
+  }
 }
 
 .marker {
